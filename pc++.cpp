@@ -1,7 +1,4 @@
 #include <iostream>
-#include "AudioFile.h"
-#include "Sampler.h"
-#include "AudioEngine.h"
 
 using namespace std;
 
@@ -52,8 +49,8 @@ int main(){
         Sampler sampler;
 
         // Load audio files
-        AudioFile file1("path/to/audio1.wav");
-        AudioFile file2("path/to/audio2.wav");
+        AudioFile file1("/Users/spikespiegel/Documents/Cymatics - Apex One Shots Vol. 3/Cymatics - KEYS Rodeo - C.wav");
+        AudioFile file2("/Users/spikespiegel/Documents/Cymatics - Apex One Shots Vol. 3/Cymatics - KEYS Rodeo - C.wav");
 
         if (file1.load() && file2.load()) {
             sampler.addAudioFile(file1);
