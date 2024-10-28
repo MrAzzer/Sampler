@@ -5,7 +5,7 @@
 
   ==============================================================================
 */
-
+#include <JuceHeader.h>
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
@@ -107,7 +107,7 @@ void SamplerAudioProcessor::releaseResources()
 bool SamplerAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
 {
   #if JucePlugin_IsMidiEffect
-    juce::ignoreUnused (layouts);
+    ignoreUnused (layouts);
     return true;
   #else
     // This is the place where you check if the layout is supported.
@@ -134,7 +134,7 @@ void SamplerAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
     juce::ScopedNoDenormals noDenormals;
     auto totalNumInputChannels  = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
-
+    
     // In case we have more outputs than inputs, this code clears any output
     // channels that didn't contain input data, (because these aren't
     // guaranteed to be empty - they may contain garbage).
@@ -156,6 +156,15 @@ void SamplerAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
 
         // ..do something to the data...
     }
+    auto currentVolume = volume.load();  // Load the volume
+    for (int channel = 0; channel < totalNumInputChannels; ++channel)
+        {
+            auto* channelData = buffer.getWritePointer(channel);
+            for (int sample = 0; sample < buffer.getNumSamples(); ++sample)
+            {
+                channelData[sample] *= currentVolume;  // Apply the volume
+            }
+        }
 }
 
 //==============================================================================
@@ -188,4 +197,9 @@ void SamplerAudioProcessor::setStateInformation (const void* data, int sizeInByt
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new SamplerAudioProcessor();
+}
+
+void SamplerAudioProcessor::setVolume(float newVolume)
+{
+    volume.store(newVolume);  // Atomically update volume
 }

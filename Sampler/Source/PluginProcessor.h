@@ -16,10 +16,10 @@
 class SamplerAudioProcessor  : public juce::AudioProcessor
 {
 public:
+    void setVolume(float newVolume);
     //==============================================================================
     SamplerAudioProcessor();
     ~SamplerAudioProcessor() override;
-
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
@@ -56,4 +56,6 @@ public:
 private:
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SamplerAudioProcessor)
+    std::atomic<float> volume { 1.0f };
+
 };
