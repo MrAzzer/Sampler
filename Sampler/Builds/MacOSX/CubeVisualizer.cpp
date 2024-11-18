@@ -1,19 +1,28 @@
 #include "CubeVisualizer.h"
 
-void CubeVisualizer::paint(juce::Graphics& g)
+CubeVisualizer::CubeVisualizer()
 {
-    g.setColour(juce::Colours::grey);
-    g.drawRect(getLocalBounds());
-
-    for (const auto& [name, position] : sources)
-    {
-        g.setColour(juce::Colours::red);
-        g.fillEllipse(position.x, position.y, 10, 10);
-    }
+    formatManager.registerBasicFormats();  // Registers common audio formats (WAV, MP3, AIFF)
 }
 
-void CubeVisualizer::addSource(const juce::String& name)
+CubeVisualizer::~CubeVisualizer() {}
+
+void CubeVisualizer::paint(juce::Graphics& g)
 {
-    sources[name] = Position3D(50, 50, 0); // Default position
-    repaint();
+    g.fillAll(juce::Colours::black);
+    // Add your custom painting code here (e.g., drawing the waveform)
+}
+
+void CubeVisualizer::resized() {}
+
+void CubeVisualizer::addSource(const juce::String& filePath)
+{
+    juce::File file(filePath);
+    auto* reader = formatManager.createReaderFor(file);
+
+    if (reader != nullptr)
+    {
+        // If the file is valid, store the reader or process the audio
+        audioReader = reader;
+    }
 }

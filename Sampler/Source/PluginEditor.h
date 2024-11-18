@@ -5,7 +5,8 @@
 #include "PluginProcessor.h"
 
 class SamplerAudioProcessorEditor : public juce::AudioProcessorEditor,
-                                    public juce::FileDragAndDropTarget
+                                    public juce::FileDragAndDropTarget,
+                                    private juce::Slider::Listener
 {
 public:
     SamplerAudioProcessorEditor(SamplerAudioProcessor&);
@@ -20,9 +21,13 @@ public:
 private:
     SamplerAudioProcessor& audioProcessor;
 
+    // Declare the vertical panning slider
+    juce::Slider verticalPanSlider;
+    juce::Label verticalPanLabel;
     juce::Slider volumeSlider, panSlider;
     juce::ListBox sampleList;
     CubeVisualizer cubeVisualizer;
+    void sliderValueChanged(juce::Slider* slider) override;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(SamplerAudioProcessorEditor)
 };
