@@ -56,7 +56,9 @@ constexpr auto qt_meta_stringdata_CLASSAudioWidgetENDCLASS = QtMocHelpers::strin
     "position",
     "updateKnobs",
     "onSoundSourceSelected",
-    "index"
+    "index",
+    "handlePlaySelectedFileRequested",
+    "playAllFiles"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -69,7 +71,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSAudioWidgetENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      12,   14, // methods
+      14,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -77,18 +79,20 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSAudioWidgetENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   86,    2, 0x08,    1 /* Private */,
-       3,    0,   87,    2, 0x08,    2 /* Private */,
-       4,    0,   88,    2, 0x08,    3 /* Private */,
-       5,    0,   89,    2, 0x08,    4 /* Private */,
-       6,    1,   90,    2, 0x08,    5 /* Private */,
-       8,    0,   93,    2, 0x08,    7 /* Private */,
-       9,    0,   94,    2, 0x08,    8 /* Private */,
-      10,    1,   95,    2, 0x08,    9 /* Private */,
-      12,    2,   98,    2, 0x08,   11 /* Private */,
-      15,    2,  103,    2, 0x08,   14 /* Private */,
-      18,    2,  108,    2, 0x08,   17 /* Private */,
-      19,    1,  113,    2, 0x08,   20 /* Private */,
+       1,    0,   98,    2, 0x08,    1 /* Private */,
+       3,    0,   99,    2, 0x08,    2 /* Private */,
+       4,    0,  100,    2, 0x08,    3 /* Private */,
+       5,    0,  101,    2, 0x08,    4 /* Private */,
+       6,    1,  102,    2, 0x08,    5 /* Private */,
+       8,    0,  105,    2, 0x08,    7 /* Private */,
+       9,    0,  106,    2, 0x08,    8 /* Private */,
+      10,    1,  107,    2, 0x08,    9 /* Private */,
+      12,    2,  110,    2, 0x08,   11 /* Private */,
+      15,    2,  115,    2, 0x08,   14 /* Private */,
+      18,    2,  120,    2, 0x08,   17 /* Private */,
+      19,    1,  125,    2, 0x08,   20 /* Private */,
+      21,    1,  128,    2, 0x08,   22 /* Private */,
+      22,    0,  131,    2, 0x08,   24 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -103,6 +107,8 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSAudioWidgetENDCLASS[] = {
     QMetaType::Void, QMetaType::QString, QMetaType::QVector3D,   16,   17,
     QMetaType::Void, QMetaType::QString, QMetaType::QVector3D,   13,   17,
     QMetaType::Void, QMetaType::Int,   20,
+    QMetaType::Void, QMetaType::QString,   16,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -148,7 +154,12 @@ Q_CONSTINIT const QMetaObject AudioWidget::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<QVector3D, std::false_type>,
         // method 'onSoundSourceSelected'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'handlePlaySelectedFileRequested'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'playAllFiles'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
@@ -171,6 +182,8 @@ void AudioWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 9: _t->handleFileDropped((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QVector3D>>(_a[2]))); break;
         case 10: _t->updateKnobs((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QVector3D>>(_a[2]))); break;
         case 11: _t->onSoundSourceSelected((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 12: _t->handlePlaySelectedFileRequested((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 13: _t->playAllFiles(); break;
         default: ;
         }
     }
@@ -195,13 +208,13 @@ int AudioWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 12)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 12;
+        _id -= 14;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 12)
+        if (_id < 14)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 12;
+        _id -= 14;
     }
     return _id;
 }

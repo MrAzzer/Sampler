@@ -11,7 +11,18 @@ SoundVisualizationWidget::SoundVisualizationWidget(QWidget *parent)
     : QWidget(parent), cubeSize(200.0f), rotateX(0), rotateY(0), rotateZ(0), m_selectedId("") {
     setAcceptDrops(true);
     setStyleSheet("background-color: #444; color: white;");
-    setMinimumSize(600, 500);
+    QWidget::setMinimumSize(600, 500); // Call QWidget's setMinimumSize
+    createRotationControls();
+
+    // Add "Play Selected File" button
+    playSelectedFileButton = new QPushButton("Play Selected File", this);
+    playSelectedFileButton->setEnabled(false); // Disabled by default
+    connect(playSelectedFileButton, &QPushButton::clicked, this, &SoundVisualizationWidget::onPlaySelectedFileClicked);
+
+    QVBoxLayout *layout = new QVBoxLayout(this);
+    layout->addWidget(playSelectedFileButton);
+    layout->addStretch();
+
     createRotationControls();
 }
 
@@ -110,6 +121,18 @@ void SoundVisualizationWidget::drawCube(QPainter &painter, const QMatrix4x4 &mvp
     for (const auto &edge : edges) {
         painter.drawLine(screenPoints[edge.first], screenPoints[edge.second]);
     }
+
+    // Draw the head (a small circle at the center)
+    QVector4D headPos = mvp.map(QVector4D(0, 0, 0, 1)); // Center of the cube
+    headPos /= headPos.w();
+    QPointF headScreenPos(
+        viewport.left() + (headPos.x() + 1) * 0.5 * viewport.width(),
+        viewport.top() + (1 - (headPos.y() + 1) * 0.5) * viewport.height()
+    );
+
+    painter.setPen(QPen(Qt::green, 2));
+    painter.setBrush(Qt::green);
+    painter.drawEllipse(headScreenPos, 5, 5); // Draw a small circle for the head
 }
 
 void SoundVisualizationWidget::drawSoundSources(QPainter &painter, const QMatrix4x4 &mvp, const QRect &viewport) {
@@ -135,17 +158,30 @@ void SoundVisualizationWidget::drawSoundSources(QPainter &painter, const QMatrix
 // ... keep existing drawAxisLabels, mouse events, and other methods
 
 QPointF SoundVisualizationWidget::convertTo3DSpace(QVector3D position) const {
+    // Use the same transformations as in drawSoundSources
+    QRect viewport = rect().adjusted(50, 50, -50, -50);
+    float aspect = static_cast<float>(viewport.width()) / viewport.height();
+
     QMatrix4x4 projection;
-    projection.perspective(45.0f, width()/height(), 0.1f, 1000.0f);
+    projection.perspective(45.0f, aspect, 0.1f, 1000.0f);
+
     QMatrix4x4 view;
     view.translate(0, 0, -cubeSize * 2.0f);
 
-    QVector4D proj = projection * view * QMatrix4x4().map(QVector4D(position, 1.0f));
+    QMatrix4x4 model;
+    model.translate(0, 0, 0); // Center the cube at the origin
+    model.rotate(rotateX, 1, 0, 0);
+    model.rotate(rotateY, 0, 1, 0);
+    model.rotate(rotateZ, 0, 0, 1);
+
+    QMatrix4x4 mvp = projection * view * model;
+
+    QVector4D proj = mvp.map(QVector4D(position, 1.0f));
     proj /= proj.w();
 
     return QPointF(
-        (proj.x() + 1) * 0.5 * width(),
-        (1 - (proj.y() + 1) * 0.5) * height()
+        viewport.left() + (proj.x() + 1) * 0.5 * viewport.width(),
+        viewport.top() + (1 - (proj.y() + 1) * 0.5) * viewport.height()
     );
 }
 
@@ -163,18 +199,20 @@ void SoundVisualizationWidget::drawAxisLabels(QPainter &painter) {
 
 
 void SoundVisualizationWidget::mousePressEvent(QMouseEvent *event) {
-    // Check if clicking near a sound source
     foreach (const QString &id, soundSources.keys()) {
         QPointF pos = convertTo3DSpace(soundSources[id]);
-        if (QLineF(event->pos(), pos).length() < 20) {
+        float distance = QLineF(event->pos(), pos).length(); // Declare distance here
+
+        float depth = (soundSources[id].z() + cubeSize / 2) / cubeSize;
+        int size = 10 + static_cast<int>(20 * (1 - depth));
+
+        if (distance < size) {
             m_selectedId = id;
-            emit positionChanged(id, soundSources[id]);
-            emit nodeSelected(soundSourceFiles[id]); // Emit the file name of the selected node
-            update();
+            QWidget::update();
             return;
         }
     }
-    // Handle rotation if not clicking a source
+
     lastMousePos = event->pos();
 }
 
@@ -239,4 +277,11 @@ QMap<QString, QVector3D> SoundVisualizationWidget::getAllSoundSources() const {
 
 QString SoundVisualizationWidget::getSelectedFileName() const {
     return soundSourceFiles.value(m_selectedId, "");
+}
+
+void SoundVisualizationWidget::onPlaySelectedFileClicked() {
+    if (!m_selectedId.isEmpty()) {
+        QString filePath = soundSourceFiles.value(m_selectedId);
+        emit playSelectedFileRequested(filePath); // Emit signal with file path
+    }
 }

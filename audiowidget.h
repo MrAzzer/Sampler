@@ -23,6 +23,15 @@
 #include <QCommandLineParser>
 #include <QDir>
 #include <cmath>
+#include <QPushButton> // Add this line
+#include <QVBoxLayout> // Add this line
+#include <QSlider>     // Add this line
+#include <QLabel>      // Add this line
+#include <QPainter>    // Add this line
+#include <QMatrix4x4>  // Add this line
+#include <QVector3D>   // Add this line
+#include <QMap>        // Add this line
+#include <QString>     // Add this line
 
 class SoundVisualizationWidget;
 class AudioWidget : public QWidget
@@ -46,6 +55,9 @@ private slots:
     void handleFileDropped(QString filePath, QVector3D position);
     void updateKnobs(QString id, QVector3D position);
     void onSoundSourceSelected(int index);
+    void handlePlaySelectedFileRequested(const QString &filePath); // Slot for playing selected file
+    void playAllFiles(); // Slot for playing all files
+
 
 private:
     QLineEdit *fileEdit;
@@ -77,9 +89,11 @@ private:
     void setupVisualization();
 
     void updateOcclusion(QSpatialSound *sound, QVector3D position); // Add this line
-
+    void updateDistanceAttenuation(QSpatialSound *sound, QVector3D position);
     // Add maxDistance
     float maxDistance = 10.0f;
+
+    QPushButton *playAllButton;
 
     SoundVisualizationWidget *soundVisualizationWidget;
 };

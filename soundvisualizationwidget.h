@@ -2,12 +2,15 @@
 #define SOUNDVISUALIZATIONWIDGET_H
 
 #include <QWidget>
-#include <QVector3D>
-#include <QMap>
-#include <QMatrix4x4>
-#include <QSlider>
-#include <QVBoxLayout>
-#include <QLabel>
+#include <QPushButton> // Add this line
+#include <QVBoxLayout> // Add this line
+#include <QSlider>     // Add this line
+#include <QLabel>      // Add this line
+#include <QPainter>    // Add this line
+#include <QMatrix4x4>  // Add this line
+#include <QVector3D>   // Add this line
+#include <QMap>        // Add this line
+#include <QString>     // Add this line
 
 class SoundVisualizationWidget : public QWidget {
     Q_OBJECT
@@ -23,6 +26,7 @@ signals:
     void fileDropped(QString filePath, QVector3D position);
     void positionChanged(QString id, QVector3D newPosition);
     void nodeSelected(QString filePath);
+    void playSelectedFileRequested(const QString &filePath);
 
 protected:
     void paintEvent(QPaintEvent *event) override;
@@ -31,6 +35,9 @@ protected:
     void wheelEvent(QWheelEvent *event) override;
     void dragEnterEvent(QDragEnterEvent *event) override;
     void dropEvent(QDropEvent *event) override;
+
+private slots:
+    void onPlaySelectedFileClicked();
 
 private:
     void createRotationControls();
@@ -46,6 +53,7 @@ private:
     float rotateX = 0, rotateY = 0, rotateZ = 0;
     QPoint lastMousePos;
     QSlider *xRotSlider, *yRotSlider, *zRotSlider;
+    QPushButton *playSelectedFileButton;
 
     QString m_selectedId;
 };

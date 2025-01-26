@@ -174,6 +174,16 @@ AudioWidget::AudioWidget(QWidget *parent)
         this->updateKnobs(id, pos); // Use 'this->' to call the member function
     });
 
+    // Add "Play All Files" button
+    playAllButton = new QPushButton("Play All Files", this);
+    connect(playAllButton, &QPushButton::clicked, this, &AudioWidget::playAllFiles);
+    rightPanel->addWidget(playAllButton);
+
+    // Connect the "Play Selected File" signal
+    connect(soundVisualizationWidget, &SoundVisualizationWidget::playSelectedFileRequested,
+            this, &AudioWidget::handlePlaySelectedFileRequested);
+
+
     // Setup visualization
     setupVisualization();
 }
@@ -279,15 +289,19 @@ void AudioWidget::animateChanged(bool checked)
         animation->stop();
 }
 
-void AudioWidget::handlePositionChanged(QString id, QVector3D pos)
-{
+void AudioWidget::handlePositionChanged(QString id, QVector3D pos) {
     if (soundSources.contains(id)) {
-        soundSources[id]->setPosition(pos);
-    }
+        QSpatialSound *sound = soundSources[id];
+        sound->setPosition(pos);
+
+        // Update spatial effects based on position
+        updateOcclusion(sound, pos);
+        updateDistanceAttenuation(sound, pos);
+    } // Add this closing brace
 }
 
-void AudioWidget::handleFileDropped(QString filePath, QVector3D position)
-{
+
+void AudioWidget::handleFileDropped(QString filePath, QVector3D position) {
     if (QFile::exists(filePath)) {
         QString id = QString::number(qHash(filePath));
 
@@ -334,7 +348,7 @@ void AudioWidget::onSoundSourceSelected(int index) {
 }
 
 void AudioWidget::updateOcclusion(QSpatialSound *sound, QVector3D position) {
-    // Example occlusion calculation based on room walls
+    // Example occlusion calculation
     float occlusionValue = 0.0f;
     if (position.x() < -5.0f || position.x() > 5.0f ||
         position.y() < -5.0f || position.y() > 5.0f ||
@@ -344,10 +358,29 @@ void AudioWidget::updateOcclusion(QSpatialSound *sound, QVector3D position) {
     sound->setOcclusionIntensity(occlusionValue);
 }
 
+void AudioWidget::updateDistanceAttenuation(QSpatialSound *sound, QVector3D position) {
+    float distance = position.length();
+    float volume = qBound(0.0f, 1.0f - (distance / maxDistance), 1.0f);
+    sound->setVolume(volume);
+}
+
 void AudioWidget::setupVisualization() {
     // Connect the nodeSelected signal to update the file name display
     connect(soundVisualizationWidget, &SoundVisualizationWidget::nodeSelected, this, [this](const QString &filePath) {
         // Update the file name display
         fileNameLabel->setText("Selected File: " + filePath);
     });
+}
+
+void AudioWidget::handlePlaySelectedFileRequested(const QString &filePath) {
+    if (soundSources.contains(filePath)) {
+        QSpatialSound *sound = soundSources[filePath];
+        sound->play();
+    }
+}
+
+void AudioWidget::playAllFiles() {
+    foreach (QSpatialSound *sound, soundSources) {
+        sound->play();
+    }
 }

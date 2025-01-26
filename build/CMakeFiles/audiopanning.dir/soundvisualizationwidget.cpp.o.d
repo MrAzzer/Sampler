@@ -1117,20 +1117,9 @@ CMakeFiles/audiopanning.dir/soundvisualizationwidget.cpp.o: \
   /opt/homebrew/include/QtWidgets/qsizepolicy.h \
   /opt/homebrew/include/QtGui/qcursor.h \
   /opt/homebrew/include/QtGui/qbitmap.h \
-  /opt/homebrew/lib/QtGui.framework/Headers/QVector3D \
-  /opt/homebrew/lib/QtGui.framework/Headers/qvectornd.h \
-  /opt/homebrew/lib/QtCore.framework/Headers/QMap \
-  /opt/homebrew/lib/QtCore.framework/Headers/qmap.h \
-  /opt/homebrew/lib/QtGui.framework/Headers/QMatrix4x4 \
-  /opt/homebrew/lib/QtGui.framework/Headers/qmatrix4x4.h \
-  /opt/homebrew/include/QtGui/qvector3d.h \
-  /opt/homebrew/include/QtGui/qvectornd.h \
-  /opt/homebrew/include/QtGui/qvector4d.h \
-  /opt/homebrew/include/QtGui/qquaternion.h \
-  /opt/homebrew/include/QtGui/qgenericmatrix.h \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/QSlider \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/qslider.h \
-  /opt/homebrew/include/QtWidgets/qabstractslider.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QPushButton \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qpushbutton.h \
+  /opt/homebrew/include/QtWidgets/qabstractbutton.h \
   /opt/homebrew/include/QtWidgets/qwidget.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QVBoxLayout \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qboxlayout.h \
@@ -1138,6 +1127,9 @@ CMakeFiles/audiopanning.dir/soundvisualizationwidget.cpp.o: \
   /opt/homebrew/include/QtWidgets/qlayoutitem.h \
   /opt/homebrew/include/QtWidgets/qboxlayout.h \
   /opt/homebrew/include/QtWidgets/qgridlayout.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QSlider \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qslider.h \
+  /opt/homebrew/include/QtWidgets/qabstractslider.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QLabel \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qlabel.h \
   /opt/homebrew/include/QtWidgets/qframe.h \
@@ -1149,6 +1141,19 @@ CMakeFiles/audiopanning.dir/soundvisualizationwidget.cpp.o: \
   /opt/homebrew/lib/QtGui.framework/Headers/qpainter.h \
   /opt/homebrew/include/QtGui/qtextoption.h \
   /opt/homebrew/include/QtGui/qpen.h \
+  /opt/homebrew/lib/QtGui.framework/Headers/QMatrix4x4 \
+  /opt/homebrew/lib/QtGui.framework/Headers/qmatrix4x4.h \
+  /opt/homebrew/include/QtGui/qvector3d.h \
+  /opt/homebrew/include/QtGui/qvectornd.h \
+  /opt/homebrew/include/QtGui/qvector4d.h \
+  /opt/homebrew/include/QtGui/qquaternion.h \
+  /opt/homebrew/include/QtGui/qgenericmatrix.h \
+  /opt/homebrew/lib/QtGui.framework/Headers/QVector3D \
+  /opt/homebrew/lib/QtGui.framework/Headers/qvectornd.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/QMap \
+  /opt/homebrew/lib/QtCore.framework/Headers/qmap.h \
+  /opt/homebrew/lib/QtCore.framework/Headers/QString \
+  /opt/homebrew/lib/QtCore.framework/Headers/qstring.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QMimeData \
   /opt/homebrew/lib/QtCore.framework/Headers/qmimedata.h \
   /opt/homebrew/lib/QtGui.framework/Headers/QDragEnterEvent \

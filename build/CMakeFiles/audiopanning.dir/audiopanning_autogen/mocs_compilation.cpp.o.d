@@ -1266,12 +1266,16 @@ CMakeFiles/audiopanning.dir/audiopanning_autogen/mocs_compilation.cpp.o: \
   /opt/homebrew/include/QtCore/qcommandlineoption.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QDir \
   /opt/homebrew/lib/QtCore.framework/Headers/qdir.h \
-  /opt/homebrew/include/QtCore/qtmochelpers.h \
-  /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/audiopanning_autogen/EWIEGA46WW/moc_soundvisualizationwidget.cpp \
-  /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/audiopanning_autogen/EWIEGA46WW/../../../soundvisualizationwidget.h \
+  /opt/homebrew/lib/QtGui.framework/Headers/QPainter \
+  /opt/homebrew/lib/QtGui.framework/Headers/qpainter.h \
+  /opt/homebrew/lib/QtGui.framework/Headers/QMatrix4x4 \
+  /opt/homebrew/lib/QtGui.framework/Headers/qmatrix4x4.h \
   /opt/homebrew/lib/QtGui.framework/Headers/QVector3D \
   /opt/homebrew/lib/QtGui.framework/Headers/qvectornd.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QMap \
   /opt/homebrew/lib/QtCore.framework/Headers/qmap.h \
-  /opt/homebrew/lib/QtGui.framework/Headers/QMatrix4x4 \
-  /opt/homebrew/lib/QtGui.framework/Headers/qmatrix4x4.h
+  /opt/homebrew/lib/QtCore.framework/Headers/QString \
+  /opt/homebrew/lib/QtCore.framework/Headers/qstring.h \
+  /opt/homebrew/include/QtCore/qtmochelpers.h \
+  /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/audiopanning_autogen/EWIEGA46WW/moc_soundvisualizationwidget.cpp \
+  /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/audiopanning_autogen/EWIEGA46WW/../../../soundvisualizationwidget.h

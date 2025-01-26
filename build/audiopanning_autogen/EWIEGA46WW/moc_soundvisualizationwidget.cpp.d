@@ -889,6 +889,7 @@
   /Library/Developer/CommandLineTools/usr/lib/clang/16/include/limits.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/16/include/stdarg.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtCore.framework/Versions/A/Headers/QMap \
+  /opt/homebrew/Cellar/qt/6.7.3/lib/QtCore.framework/Versions/A/Headers/QString \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtCore.framework/Versions/A/Headers/q20functional.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtCore.framework/Versions/A/Headers/q20memory.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtCore.framework/Versions/A/Headers/q20type_traits.h \
@@ -1009,6 +1010,7 @@
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtCore.framework/Versions/A/Headers/qxptype_traits.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtCore.framework/Versions/A/Headers/qyieldcpu.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtGui.framework/Versions/A/Headers/QMatrix4x4 \
+  /opt/homebrew/Cellar/qt/6.7.3/lib/QtGui.framework/Versions/A/Headers/QPainter \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtGui.framework/Versions/A/Headers/QVector3D \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtGui.framework/Versions/A/Headers/qaction.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtGui.framework/Versions/A/Headers/qbitmap.h \
@@ -1024,7 +1026,9 @@
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtGui.framework/Versions/A/Headers/qkeysequence.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtGui.framework/Versions/A/Headers/qmatrix4x4.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtGui.framework/Versions/A/Headers/qpaintdevice.h \
+  /opt/homebrew/Cellar/qt/6.7.3/lib/QtGui.framework/Versions/A/Headers/qpainter.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtGui.framework/Versions/A/Headers/qpalette.h \
+  /opt/homebrew/Cellar/qt/6.7.3/lib/QtGui.framework/Versions/A/Headers/qpen.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtGui.framework/Versions/A/Headers/qpicture.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtGui.framework/Versions/A/Headers/qpixelformat.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtGui.framework/Versions/A/Headers/qpixmap.h \
@@ -1034,6 +1038,7 @@
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtGui.framework/Versions/A/Headers/qrgb.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtGui.framework/Versions/A/Headers/qrgba64.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtGui.framework/Versions/A/Headers/qtextdocument.h \
+  /opt/homebrew/Cellar/qt/6.7.3/lib/QtGui.framework/Versions/A/Headers/qtextoption.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtGui.framework/Versions/A/Headers/qtgui-config.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtGui.framework/Versions/A/Headers/qtguiexports.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtGui.framework/Versions/A/Headers/qtguiglobal.h \
@@ -1043,9 +1048,11 @@
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtGui.framework/Versions/A/Headers/qvectornd.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtGui.framework/Versions/A/Headers/qwindowdefs.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtWidgets.framework/Versions/A/Headers/QLabel \
+  /opt/homebrew/Cellar/qt/6.7.3/lib/QtWidgets.framework/Versions/A/Headers/QPushButton \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtWidgets.framework/Versions/A/Headers/QSlider \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtWidgets.framework/Versions/A/Headers/QVBoxLayout \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtWidgets.framework/Versions/A/Headers/QWidget \
+  /opt/homebrew/Cellar/qt/6.7.3/lib/QtWidgets.framework/Versions/A/Headers/qabstractbutton.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtWidgets.framework/Versions/A/Headers/qabstractslider.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtWidgets.framework/Versions/A/Headers/qboxlayout.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtWidgets.framework/Versions/A/Headers/qframe.h \
@@ -1053,6 +1060,7 @@
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtWidgets.framework/Versions/A/Headers/qlabel.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtWidgets.framework/Versions/A/Headers/qlayout.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtWidgets.framework/Versions/A/Headers/qlayoutitem.h \
+  /opt/homebrew/Cellar/qt/6.7.3/lib/QtWidgets.framework/Versions/A/Headers/qpushbutton.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtWidgets.framework/Versions/A/Headers/qsizepolicy.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtWidgets.framework/Versions/A/Headers/qslider.h \
   /opt/homebrew/Cellar/qt/6.7.3/lib/QtWidgets.framework/Versions/A/Headers/qtwidgets-config.h \
