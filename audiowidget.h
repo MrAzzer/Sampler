@@ -25,7 +25,6 @@
 #include <cmath>
 
 class SoundVisualizationWidget;
-
 class AudioWidget : public QWidget
 {
     Q_OBJECT
@@ -43,6 +42,10 @@ private slots:
     void openFileDialog();
     void updateRoom();
     void animateChanged(bool checked);
+    void handlePositionChanged(QString id, QVector3D pos);
+    void handleFileDropped(QString filePath, QVector3D position);
+    void updateKnobs(QString id, QVector3D position);
+    void onSoundSourceSelected(int index);
 
 private:
     QLineEdit *fileEdit;
@@ -67,6 +70,14 @@ private:
     QAudioListener *listener;
     QSpatialSound *sound;
     QPropertyAnimation *animation;
+
+    QMap<QString, QSpatialSound*> soundSources;
+    QComboBox *soundSourceSelector; // Add this line
+
+    void updateOcclusion(QSpatialSound *sound, QVector3D position); // Add this line
+
+    // Add maxDistance
+    float maxDistance = 10.0f;
 
     SoundVisualizationWidget *soundVisualizationWidget;
 };

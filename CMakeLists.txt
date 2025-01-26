@@ -13,8 +13,6 @@ qt_add_executable(audiopanning
     main.cpp
     audiowidget.cpp
     soundvisualizationwidget.cpp
-    audiowidget.h
-    soundvisualizationwidget.h
 )
 
 # Link required Qt libraries
