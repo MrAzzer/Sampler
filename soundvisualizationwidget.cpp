@@ -59,16 +59,18 @@ void SoundVisualizationWidget::paintEvent(QPaintEvent *event) {
 
     // Set up view matrix (camera)
     QMatrix4x4 view;
-    view.translate(0, 0, -cubeSize * 2.0f);
+    view.translate(0, 0, -cubeSize * 2.0f); // Move camera back
 
     // Set up model matrix
     QMatrix4x4 model;
-    model.translate(cubeSize/2, cubeSize/2, cubeSize/2);
+    model.translate(0, 0, 0); // Center the cube at the origin
+
+    // Apply rotations around the center
     model.rotate(rotateX, 1, 0, 0);
     model.rotate(rotateY, 0, 1, 0);
     model.rotate(rotateZ, 0, 0, 1);
-    model.translate(-cubeSize/2, -cubeSize/2, -cubeSize/2);
 
+    // Combine matrices
     QMatrix4x4 mvp = projection * view * model;
 
     // Draw elements
@@ -80,11 +82,11 @@ void SoundVisualizationWidget::paintEvent(QPaintEvent *event) {
 void SoundVisualizationWidget::drawCube(QPainter &painter, const QMatrix4x4 &mvp, const QRect &viewport) {
     painter.setPen(QPen(Qt::white, 2));
 
-    // Define cube vertices
-    const float s = cubeSize;
+    // Define cube vertices (centered around the origin)
+    const float s = cubeSize / 2.0f; // Half size for centering
     QVector<QVector3D> vertices = {
-        {0, 0, 0}, {s, 0, 0}, {s, s, 0}, {0, s, 0},  // Front
-        {0, 0, s}, {s, 0, s}, {s, s, s}, {0, s, s}   // Back
+        {-s, -s, -s}, {s, -s, -s}, {s, s, -s}, {-s, s, -s},  // Front
+        {-s, -s, s}, {s, -s, s}, {s, s, s}, {-s, s, s}       // Back
     };
 
     // Project vertices
