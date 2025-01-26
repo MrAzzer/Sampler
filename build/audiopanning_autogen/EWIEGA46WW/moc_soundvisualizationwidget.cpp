@@ -43,7 +43,8 @@ constexpr auto qt_meta_stringdata_CLASSSoundVisualizationWidgetENDCLASS = QtMocH
     "position",
     "positionChanged",
     "id",
-    "newPosition"
+    "newPosition",
+    "nodeSelected"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -56,20 +57,22 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSSoundVisualizationWidgetENDCLASS
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       2,       // signalCount
+       3,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    2,   26,    2, 0x06,    1 /* Public */,
-       5,    2,   31,    2, 0x06,    4 /* Public */,
+       1,    2,   32,    2, 0x06,    1 /* Public */,
+       5,    2,   37,    2, 0x06,    4 /* Public */,
+       8,    1,   42,    2, 0x06,    7 /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::QVector3D,    3,    4,
     QMetaType::Void, QMetaType::QString, QMetaType::QVector3D,    6,    7,
+    QMetaType::Void, QMetaType::QString,    3,
 
        0        // eod
 };
@@ -90,7 +93,10 @@ Q_CONSTINIT const QMetaObject SoundVisualizationWidget::staticMetaObject = { {
         // method 'positionChanged'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QVector3D, std::false_type>
+        QtPrivate::TypeAndForceComplete<QVector3D, std::false_type>,
+        // method 'nodeSelected'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>
     >,
     nullptr
 } };
@@ -103,6 +109,7 @@ void SoundVisualizationWidget::qt_static_metacall(QObject *_o, QMetaObject::Call
         switch (_id) {
         case 0: _t->fileDropped((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QVector3D>>(_a[2]))); break;
         case 1: _t->positionChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QVector3D>>(_a[2]))); break;
+        case 2: _t->nodeSelected((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -118,6 +125,13 @@ void SoundVisualizationWidget::qt_static_metacall(QObject *_o, QMetaObject::Call
             using _t = void (SoundVisualizationWidget::*)(QString , QVector3D );
             if (_t _q_method = &SoundVisualizationWidget::positionChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 1;
+                return;
+            }
+        }
+        {
+            using _t = void (SoundVisualizationWidget::*)(QString );
+            if (_t _q_method = &SoundVisualizationWidget::nodeSelected; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 2;
                 return;
             }
         }
@@ -143,13 +157,13 @@ int SoundVisualizationWidget::qt_metacall(QMetaObject::Call _c, int _id, void **
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 3;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 3)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 2;
+        _id -= 3;
     }
     return _id;
 }
@@ -166,5 +180,12 @@ void SoundVisualizationWidget::positionChanged(QString _t1, QVector3D _t2)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
     QMetaObject::activate(this, &staticMetaObject, 1, _a);
+}
+
+// SIGNAL 2
+void SoundVisualizationWidget::nodeSelected(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 QT_WARNING_POP

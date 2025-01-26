@@ -64,6 +64,7 @@ private:
     QPushButton *playButton;
     QFileDialog *fileDialog;
     bool isPlaying;
+    QLabel *fileNameLabel;
 
     QAudioEngine engine;
     QAudioRoom *room;
@@ -73,6 +74,7 @@ private:
 
     QMap<QString, QSpatialSound*> soundSources;
     QComboBox *soundSourceSelector; // Add this line
+    void setupVisualization();
 
     void updateOcclusion(QSpatialSound *sound, QVector3D position); // Add this line
 

@@ -2,8 +2,7 @@
 #include "soundvisualizationwidget.h"
 
 AudioWidget::AudioWidget(QWidget *parent)
-    : QWidget(parent), fileDialog(nullptr), isPlaying(false), maxDistance(10.0f)
-{
+    : QWidget(parent), fileDialog(nullptr), isPlaying(false), maxDistance(10.0f) {
     setMinimumSize(900, 700);
     auto *mainLayout = new QHBoxLayout(this);
     auto *leftPanel = new QVBoxLayout;
@@ -46,6 +45,12 @@ AudioWidget::AudioWidget(QWidget *parent)
 
     // Right Panel: Knobs (Sliders)
     auto *rightPanel = new QVBoxLayout;
+
+    // Add a label to display the selected file name
+    fileNameLabel = new QLabel(tr("Selected File: None"));
+    fileNameLabel->setAlignment(Qt::AlignCenter);
+    fileNameLabel->setStyleSheet("color: white; font-size: 14px;");
+    rightPanel->addWidget(fileNameLabel);
 
     rightPanel->addWidget(new QLabel(tr("Azimuth (-180 - 180 degree):")));
     azimuth = new QSlider(Qt::Horizontal);
@@ -168,6 +173,9 @@ AudioWidget::AudioWidget(QWidget *parent)
         QVector3D pos = soundVisualizationWidget->getSoundPosition(id);
         this->updateKnobs(id, pos); // Use 'this->' to call the member function
     });
+
+    // Setup visualization
+    setupVisualization();
 }
 
 void AudioWidget::setFile(const QString &file)
@@ -295,7 +303,7 @@ void AudioWidget::handleFileDropped(QString filePath, QVector3D position)
         }
 
         soundSources[id]->setPosition(position);
-        soundVisualizationWidget->addSoundSource(id, position);
+        soundVisualizationWidget->addSoundSource(id, position, filePath);
     }
 }
 
@@ -334,4 +342,12 @@ void AudioWidget::updateOcclusion(QSpatialSound *sound, QVector3D position) {
         occlusionValue = 1.0f; // Full occlusion if outside room bounds
     }
     sound->setOcclusionIntensity(occlusionValue);
+}
+
+void AudioWidget::setupVisualization() {
+    // Connect the nodeSelected signal to update the file name display
+    connect(soundVisualizationWidget, &SoundVisualizationWidget::nodeSelected, this, [this](const QString &filePath) {
+        // Update the file name display
+        fileNameLabel->setText("Selected File: " + filePath);
+    });
 }

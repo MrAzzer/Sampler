@@ -13,14 +13,16 @@ class SoundVisualizationWidget : public QWidget {
     Q_OBJECT
 public:
     explicit SoundVisualizationWidget(QWidget *parent = nullptr);
-    void addSoundSource(const QString &id, QVector3D position);
+    void addSoundSource(const QString &id, QVector3D position, const QString &filePath);
     void updateSoundPosition(const QString &id, QVector3D position);
     QVector3D getSoundPosition(const QString &id) const;
     QMap<QString, QVector3D> getAllSoundSources() const;
+    QString getSelectedFileName() const;
 
 signals:
     void fileDropped(QString filePath, QVector3D position);
     void positionChanged(QString id, QVector3D newPosition);
+    void nodeSelected(QString filePath);
 
 protected:
     void paintEvent(QPaintEvent *event) override;
@@ -33,13 +35,14 @@ protected:
 private:
     void createRotationControls();
     void updateSliders();
-    void drawCube(QPainter &painter);
-    void drawSoundSources(QPainter &painter);
+    void drawCube(QPainter &painter, const QMatrix4x4 &mvp, const QRect &viewport);
+    void drawSoundSources(QPainter &painter, const QMatrix4x4 &mvp, const QRect &viewport);
     void drawAxisLabels(QPainter &painter);
     QPointF convertTo3DSpace(QVector3D position) const;
 
     QMap<QString, QVector3D> soundSources;
-    float cubeSize = 200.0f;
+    QMap<QString, QString> soundSourceFiles; // Map ID to file path
+    float cubeSize = 800.0f;
     float rotateX = 0, rotateY = 0, rotateZ = 0;
     QPoint lastMousePos;
     QSlider *xRotSlider, *yRotSlider, *zRotSlider;

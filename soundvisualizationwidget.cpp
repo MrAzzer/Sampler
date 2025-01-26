@@ -49,71 +49,102 @@ void SoundVisualizationWidget::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
 
-    // Define visualization area
-    QRect visRect = rect().adjusted(20, 20, -220, -20);
+    // Set up viewport dimensions
+    const QRect viewport = rect().adjusted(50, 50, -50, -50);
+    const float aspect = static_cast<float>(viewport.width()) / viewport.height();
 
-    // Set up transformation matrix
-    QMatrix4x4 transform;
-    transform.translate(visRect.center().x(), visRect.center().y()); // Move to the center of the screen
+    // Set up projection matrix
+    QMatrix4x4 projection;
+    projection.perspective(45.0f, aspect, 0.1f, 1000.0f);
 
-    // Rotate around the CUBE'S CENTER (origin)
-    transform.rotate(rotateX, 1.0f, 0.0f, 0.0f); // Rotate around X-axis
-    transform.rotate(rotateY, 0.0f, 1.0f, 0.0f); // Rotate around Y-axis
-    transform.rotate(rotateZ, 0.0f, 0.0f, 1.0f); // Rotate around Z-axis
+    // Set up view matrix (camera)
+    QMatrix4x4 view;
+    view.translate(0, 0, -cubeSize * 2.0f);
 
-    // Apply the transformation to the painter
-    painter.setTransform(transform.toTransform());
+    // Set up model matrix
+    QMatrix4x4 model;
+    model.translate(cubeSize/2, cubeSize/2, cubeSize/2);
+    model.rotate(rotateX, 1, 0, 0);
+    model.rotate(rotateY, 0, 1, 0);
+    model.rotate(rotateZ, 0, 0, 1);
+    model.translate(-cubeSize/2, -cubeSize/2, -cubeSize/2);
 
-    // Draw the cube and sound sources
-    drawCube(painter);
-    drawSoundSources(painter);
+    QMatrix4x4 mvp = projection * view * model;
+
+    // Draw elements
+    drawCube(painter, mvp, viewport);
+    drawSoundSources(painter, mvp, viewport);
     drawAxisLabels(painter);
 }
-void SoundVisualizationWidget::drawCube(QPainter &painter) {
+
+void SoundVisualizationWidget::drawCube(QPainter &painter, const QMatrix4x4 &mvp, const QRect &viewport) {
     painter.setPen(QPen(Qt::white, 2));
 
-    // Define cube vertices relative to the center
-    const float s = cubeSize / 2; // Half the size of the cube
+    // Define cube vertices
+    const float s = cubeSize;
     QVector<QVector3D> vertices = {
-        {-s, -s, -s}, {s, -s, -s}, {s, s, -s}, {-s, s, -s}, // Front face
-        {-s, -s, s}, {s, -s, s}, {s, s, s}, {-s, s, s}     // Back face
+        {0, 0, 0}, {s, 0, 0}, {s, s, 0}, {0, s, 0},  // Front
+        {0, 0, s}, {s, 0, s}, {s, s, s}, {0, s, s}   // Back
     };
 
-    // Edges connecting the vertices
-    QVector<QPair<int, int>> edges = {
-        {0, 1}, {1, 2}, {2, 3}, {3, 0}, // Front face edges
-        {4, 5}, {5, 6}, {6, 7}, {7, 4}, // Back face edges
-        {0, 4}, {1, 5}, {2, 6}, {3, 7}  // Connecting edges
+    // Project vertices
+    QVector<QPointF> screenPoints;
+    for (const auto &v : vertices) {
+        QVector4D proj = mvp.map(QVector4D(v, 1.0f));
+        proj /= proj.w();
+        QPointF p(
+            viewport.left() + (proj.x() + 1) * 0.5 * viewport.width(),
+            viewport.top() + (1 - (proj.y() + 1) * 0.5) * viewport.height()
+        );
+        screenPoints << p;
+    }
+
+    // Define edges and draw
+    const QVector<QPair<int, int>> edges = {
+        {0,1}, {1,2}, {2,3}, {3,0}, {4,5}, {5,6}, {6,7}, {7,4},
+        {0,4}, {1,5}, {2,6}, {3,7}
     };
 
-    // Draw all edges
     for (const auto &edge : edges) {
-        QVector3D v1 = vertices[edge.first];
-        QVector3D v2 = vertices[edge.second];
-        QPointF p1 = convertTo3DSpace(v1);
-        QPointF p2 = convertTo3DSpace(v2);
-        painter.drawLine(p1, p2);
+        painter.drawLine(screenPoints[edge.first], screenPoints[edge.second]);
     }
 }
 
-void SoundVisualizationWidget::drawSoundSources(QPainter &painter) {
+void SoundVisualizationWidget::drawSoundSources(QPainter &painter, const QMatrix4x4 &mvp, const QRect &viewport) {
     foreach (const QString &id, soundSources.keys()) {
         QVector3D pos = soundSources[id];
-        QPointF screenPos = convertTo3DSpace(pos);
+        QVector4D proj = mvp.map(QVector4D(pos, 1.0f));
+        proj /= proj.w();
 
-        // Highlight selected source
-        bool isSelected = (id == m_selectedId);
-        QColor color = isSelected ? Qt::yellow : Qt::red;
+        QPointF screenPos(
+            viewport.left() + (proj.x() + 1) * 0.5 * viewport.width(),
+            viewport.top() + (1 - (proj.y() + 1) * 0.5) * viewport.height()
+        );
 
-        // Depth-based size
-        float depthFactor = 1.0f - (pos.z() + cubeSize / 2) / cubeSize;
-        int size = 10 + static_cast<int>(20 * depthFactor);
+        float depth = (proj.z() + 1) / 2;
+        int size = 10 + static_cast<int>(20 * (1 - depth));
 
-        // Draw with halo effect
-        painter.setPen(QPen(color.darker(200), 2));
-        painter.setBrush(color);
+        painter.setPen(QPen(id == m_selectedId ? Qt::yellow : Qt::red, 2));
+        painter.setBrush(id == m_selectedId ? Qt::yellow : Qt::red);
         painter.drawEllipse(screenPos, size, size);
     }
+}
+
+// ... keep existing drawAxisLabels, mouse events, and other methods
+
+QPointF SoundVisualizationWidget::convertTo3DSpace(QVector3D position) const {
+    QMatrix4x4 projection;
+    projection.perspective(45.0f, width()/height(), 0.1f, 1000.0f);
+    QMatrix4x4 view;
+    view.translate(0, 0, -cubeSize * 2.0f);
+
+    QVector4D proj = projection * view * QMatrix4x4().map(QVector4D(position, 1.0f));
+    proj /= proj.w();
+
+    return QPointF(
+        (proj.x() + 1) * 0.5 * width(),
+        (1 - (proj.y() + 1) * 0.5) * height()
+    );
 }
 
 void SoundVisualizationWidget::drawAxisLabels(QPainter &painter) {
@@ -127,15 +158,7 @@ void SoundVisualizationWidget::drawAxisLabels(QPainter &painter) {
     painter.drawText(visRect.center() + QPoint(-40, visRect.height() / 2 + 10), "Z");
 }
 
-QPointF SoundVisualizationWidget::convertTo3DSpace(QVector3D position) const {
-    QRect visRect = rect().adjusted(20, 20, -220, -20);
 
-    // Map 3D coordinates to 2D screen coordinates
-    float x = visRect.center().x() + position.x() * visRect.width() / cubeSize;
-    float y = visRect.center().y() - position.z() * visRect.height() / cubeSize; // Use Z for depth
-
-    return QPointF(x, y);
-}
 
 void SoundVisualizationWidget::mousePressEvent(QMouseEvent *event) {
     // Check if clicking near a sound source
@@ -144,6 +167,7 @@ void SoundVisualizationWidget::mousePressEvent(QMouseEvent *event) {
         if (QLineF(event->pos(), pos).length() < 20) {
             m_selectedId = id;
             emit positionChanged(id, soundSources[id]);
+            emit nodeSelected(soundSourceFiles[id]); // Emit the file name of the selected node
             update();
             return;
         }
@@ -191,14 +215,15 @@ void SoundVisualizationWidget::dropEvent(QDropEvent *event) {
         for (const QUrl &url : mimeData->urls()) {
             QString filePath = url.toLocalFile();
             QString id = QString::number(qHash(filePath));
-            addSoundSource(id, position);
+            addSoundSource(id, position, filePath);
             emit fileDropped(filePath, position);
         }
     }
 }
 
-void SoundVisualizationWidget::addSoundSource(const QString &id, QVector3D position) {
+void SoundVisualizationWidget::addSoundSource(const QString &id, QVector3D position, const QString &filePath) {
     soundSources.insert(id, position);
+    soundSourceFiles.insert(id, filePath); // Store the file path
     update();
 }
 
@@ -208,4 +233,8 @@ QVector3D SoundVisualizationWidget::getSoundPosition(const QString &id) const {
 
 QMap<QString, QVector3D> SoundVisualizationWidget::getAllSoundSources() const {
     return soundSources;
+}
+
+QString SoundVisualizationWidget::getSelectedFileName() const {
+    return soundSourceFiles.value(m_selectedId, "");
 }
