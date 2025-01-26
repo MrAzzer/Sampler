@@ -1,2 +1,2 @@
 # Sampler
-Cpp oop Juce
+Cpp oop QT (formerly with JUCE)
