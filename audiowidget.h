@@ -1,6 +1,5 @@
 #ifndef AUDIOWIDGET_H
 #define AUDIOWIDGET_H
-
 #include <QWidget>
 #include <QAudioEngine>
 #include <QAudioListener>
@@ -23,27 +22,13 @@
 #include <QCommandLineParser>
 #include <QDir>
 #include <cmath>
-#include <QPushButton> // Add this line
-#include <QVBoxLayout> // Add this line
-#include <QSlider>     // Add this line
-#include <QLabel>      // Add this line
-#include <QPainter>    // Add this line
-#include <QMatrix4x4>  // Add this line
-#include <QVector3D>   // Add this line
-#include <QMap>        // Add this line
-#include <QString>     // Add this line
-
 class SoundVisualizationWidget;
 class AudioWidget : public QWidget
 {
     Q_OBJECT
-
 public:
     AudioWidget(QWidget *parent = nullptr);
     void setFile(const QString &file);
-    void showKnobsPanel(bool visible);
-    void updateSoundSourceSelector();
-
 private slots:
     void playAudio();
     void updatePosition();
@@ -53,17 +38,6 @@ private slots:
     void openFileDialog();
     void updateRoom();
     void animateChanged(bool checked);
-    void handlePositionChanged(QString id, QVector3D pos);
-    void handleFileDropped(QString filePath, QVector3D position);
-    void onSoundSourceSelected(int index);
-    void updateKnobs(QString id, QVector3D position);
-    
-    void playAllFiles(); // Slot for playing all files
-
-public slots:
-    void handlePlaySelectedFileRequested(const QString &filePath);
-
-
 private:
     QLineEdit *fileEdit;
     QPushButton *fileDialogButton;
@@ -81,26 +55,11 @@ private:
     QPushButton *playButton;
     QFileDialog *fileDialog;
     bool isPlaying;
-    QLabel *fileNameLabel;
-
     QAudioEngine engine;
     QAudioRoom *room;
     QAudioListener *listener;
     QSpatialSound *sound;
     QPropertyAnimation *animation;
-
-    QMap<QString, QSpatialSound*> soundSources;
-    QComboBox *soundSourceSelector; // Add this line
-    void setupVisualization();
-
-    void updateOcclusion(QSpatialSound *sound, QVector3D position); // Add this line
-    void updateDistanceAttenuation(QSpatialSound *sound, QVector3D position);
-    // Add maxDistance
-    float maxDistance = 10.0f;
-
-    QPushButton *playAllButton;
-
     SoundVisualizationWidget *soundVisualizationWidget;
 };
-
 #endif // AUDIOWIDGET_H

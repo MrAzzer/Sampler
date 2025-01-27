@@ -47,18 +47,7 @@ constexpr auto qt_meta_stringdata_CLASSAudioWidgetENDCLASS = QtMocHelpers::strin
     "openFileDialog",
     "updateRoom",
     "animateChanged",
-    "checked",
-    "handlePositionChanged",
-    "id",
-    "pos",
-    "handleFileDropped",
-    "filePath",
-    "position",
-    "onSoundSourceSelected",
-    "index",
-    "updateKnobs",
-    "playAllFiles",
-    "handlePlaySelectedFileRequested"
+    "checked"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -71,7 +60,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSAudioWidgetENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      14,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -79,20 +68,14 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSAudioWidgetENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   98,    2, 0x08,    1 /* Private */,
-       3,    0,   99,    2, 0x08,    2 /* Private */,
-       4,    0,  100,    2, 0x08,    3 /* Private */,
-       5,    0,  101,    2, 0x08,    4 /* Private */,
-       6,    1,  102,    2, 0x08,    5 /* Private */,
-       8,    0,  105,    2, 0x08,    7 /* Private */,
-       9,    0,  106,    2, 0x08,    8 /* Private */,
-      10,    1,  107,    2, 0x08,    9 /* Private */,
-      12,    2,  110,    2, 0x08,   11 /* Private */,
-      15,    2,  115,    2, 0x08,   14 /* Private */,
-      18,    1,  120,    2, 0x08,   17 /* Private */,
-      20,    2,  123,    2, 0x08,   19 /* Private */,
-      21,    0,  128,    2, 0x08,   22 /* Private */,
-      22,    1,  129,    2, 0x0a,   23 /* Public */,
+       1,    0,   62,    2, 0x08,    1 /* Private */,
+       3,    0,   63,    2, 0x08,    2 /* Private */,
+       4,    0,   64,    2, 0x08,    3 /* Private */,
+       5,    0,   65,    2, 0x08,    4 /* Private */,
+       6,    1,   66,    2, 0x08,    5 /* Private */,
+       8,    0,   69,    2, 0x08,    7 /* Private */,
+       9,    0,   70,    2, 0x08,    8 /* Private */,
+      10,    1,   71,    2, 0x08,    9 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -103,12 +86,6 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSAudioWidgetENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Bool,   11,
-    QMetaType::Void, QMetaType::QString, QMetaType::QVector3D,   13,   14,
-    QMetaType::Void, QMetaType::QString, QMetaType::QVector3D,   16,   17,
-    QMetaType::Void, QMetaType::Int,   19,
-    QMetaType::Void, QMetaType::QString, QMetaType::QVector3D,   13,   17,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   16,
 
        0        // eod
 };
@@ -139,27 +116,7 @@ Q_CONSTINIT const QMetaObject AudioWidget::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'animateChanged'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
-        // method 'handlePositionChanged'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QVector3D, std::false_type>,
-        // method 'handleFileDropped'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QVector3D, std::false_type>,
-        // method 'onSoundSourceSelected'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>,
-        // method 'updateKnobs'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QVector3D, std::false_type>,
-        // method 'playAllFiles'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'handlePlaySelectedFileRequested'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>
     >,
     nullptr
 } };
@@ -178,12 +135,6 @@ void AudioWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 5: _t->openFileDialog(); break;
         case 6: _t->updateRoom(); break;
         case 7: _t->animateChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
-        case 8: _t->handlePositionChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QVector3D>>(_a[2]))); break;
-        case 9: _t->handleFileDropped((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QVector3D>>(_a[2]))); break;
-        case 10: _t->onSoundSourceSelected((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 11: _t->updateKnobs((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QVector3D>>(_a[2]))); break;
-        case 12: _t->playAllFiles(); break;
-        case 13: _t->handlePlaySelectedFileRequested((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     }
@@ -208,13 +159,13 @@ int AudioWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 14)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 14;
+        _id -= 8;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 14)
+        if (_id < 8)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 14;
+        _id -= 8;
     }
     return _id;
 }
