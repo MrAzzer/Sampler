@@ -27,6 +27,7 @@ signals:
     void positionChanged(QString id, QVector3D newPosition);
     void nodeSelected(QString filePath);
     void playSelectedFileRequested(const QString &filePath);
+    
 
 protected:
     void paintEvent(QPaintEvent *event) override;
@@ -40,6 +41,7 @@ private slots:
     void onPlaySelectedFileClicked();
 
 private:
+    SoundVisualizationWidget *soundVisualizationWidget; // Declare pointer
     void createRotationControls();
     void updateSliders();
     void drawCube(QPainter &painter, const QMatrix4x4 &mvp, const QRect &viewport);

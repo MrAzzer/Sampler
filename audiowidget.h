@@ -41,6 +41,8 @@ class AudioWidget : public QWidget
 public:
     AudioWidget(QWidget *parent = nullptr);
     void setFile(const QString &file);
+    void showKnobsPanel(bool visible);
+    void updateSoundSourceSelector();
 
 private slots:
     void playAudio();
@@ -53,10 +55,13 @@ private slots:
     void animateChanged(bool checked);
     void handlePositionChanged(QString id, QVector3D pos);
     void handleFileDropped(QString filePath, QVector3D position);
-    void updateKnobs(QString id, QVector3D position);
     void onSoundSourceSelected(int index);
-    void handlePlaySelectedFileRequested(const QString &filePath); // Slot for playing selected file
+    void updateKnobs(QString id, QVector3D position);
+    
     void playAllFiles(); // Slot for playing all files
+
+public slots:
+    void handlePlaySelectedFileRequested(const QString &filePath);
 
 
 private:

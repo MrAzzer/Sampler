@@ -14,6 +14,8 @@ SoundVisualizationWidget::SoundVisualizationWidget(QWidget *parent)
     QWidget::setMinimumSize(600, 500); // Call QWidget's setMinimumSize
     createRotationControls();
 
+    // Initialize sound sourcessoundVisualizationWidget = new SoundVisualizationWidget(this); // Initialize
+
     // Add "Play Selected File" button
     playSelectedFileButton = new QPushButton("Play Selected File", this);
     playSelectedFileButton->setEnabled(false); // Disabled by default
@@ -185,30 +187,19 @@ QPointF SoundVisualizationWidget::convertTo3DSpace(QVector3D position) const {
     );
 }
 
-void SoundVisualizationWidget::drawAxisLabels(QPainter &painter) {
-    painter.resetTransform();
-    painter.setPen(Qt::white);
-    QRect visRect = rect().adjusted(20, 20, -220, -20);
-
-    // Draw X, Y, Z labels
-    painter.drawText(visRect.center() + QPoint(visRect.width() / 2 + 10, 0), "X");
-    painter.drawText(visRect.center() + QPoint(0, -visRect.height() / 2 - 10), "Y");
-    painter.drawText(visRect.center() + QPoint(-40, visRect.height() / 2 + 10), "Z");
-}
-
-
 
 void SoundVisualizationWidget::mousePressEvent(QMouseEvent *event) {
     foreach (const QString &id, soundSources.keys()) {
         QPointF pos = convertTo3DSpace(soundSources[id]);
-        float distance = QLineF(event->pos(), pos).length(); // Declare distance here
+        float distance = QLineF(event->pos(), pos).length();
 
         float depth = (soundSources[id].z() + cubeSize / 2) / cubeSize;
         int size = 10 + static_cast<int>(20 * (1 - depth));
 
         if (distance < size) {
             m_selectedId = id;
-            QWidget::update();
+            emit nodeSelected(soundSourceFiles.value(id));
+            update();
             return;
         }
     }
@@ -217,14 +208,17 @@ void SoundVisualizationWidget::mousePressEvent(QMouseEvent *event) {
 }
 
 void SoundVisualizationWidget::mouseMoveEvent(QMouseEvent *event) {
-    QPoint delta = event->pos() - lastMousePos;
-    if (event->buttons() & Qt::LeftButton) {
-        rotateY += delta.x() * 0.5f; // Rotate around Y-axis (horizontal)
-        rotateX += delta.y() * 0.5f; // Rotate around X-axis (vertical)
-        updateSliders();
+    if (event->buttons() & Qt::LeftButton && !m_selectedId.isEmpty()) {
+        QVector3D newPos(
+            (event->pos().x() - width() / 2) * cubeSize / (width() - 240),
+            0,
+            (height() / 2 - event->pos().y()) * cubeSize / (height() - 40)
+        );
+        soundSources[m_selectedId] = newPos;
+        emit positionChanged(m_selectedId, newPos);
+        update();
     }
     lastMousePos = event->pos();
-    update();
 }
 
 void SoundVisualizationWidget::wheelEvent(QWheelEvent *event) {
@@ -284,4 +278,25 @@ void SoundVisualizationWidget::onPlaySelectedFileClicked() {
         QString filePath = soundSourceFiles.value(m_selectedId);
         emit playSelectedFileRequested(filePath); // Emit signal with file path
     }
+}
+
+void SoundVisualizationWidget::drawAxisLabels(QPainter &painter) {
+    painter.resetTransform();
+    painter.setPen(Qt::white);
+    QRect visRect = rect().adjusted(20, 20, -220, -20);
+
+    // Draw X, Y, Z labels
+    painter.drawText(visRect.center() + QPoint(visRect.width() / 2 + 10, 0), "X");
+    painter.drawText(visRect.center() + QPoint(0, -visRect.height() / 2 - 10), "Y");
+    painter.drawText(visRect.center() + QPoint(-40, visRect.height() / 2 + 10), "Z");
+
+    // Draw axes lines
+    painter.setPen(QPen(Qt::red, 2)); // X-axis (red)
+    painter.drawLine(visRect.center(), visRect.center() + QPoint(50, 0));
+
+    painter.setPen(QPen(Qt::green, 2)); // Y-axis (green)
+    painter.drawLine(visRect.center(), visRect.center() + QPoint(0, -50));
+
+    painter.setPen(QPen(Qt::blue, 2)); // Z-axis (blue)
+    painter.drawLine(visRect.center(), visRect.center() + QPoint(-50, 0));
 }

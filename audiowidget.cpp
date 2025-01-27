@@ -157,6 +157,8 @@ AudioWidget::AudioWidget(QWidget *parent)
             this, &AudioWidget::handleFileDropped);
     connect(soundSourceSelector, QOverload<int>::of(&QComboBox::currentIndexChanged),
             this, &AudioWidget::onSoundSourceSelected);
+    connect(soundVisualizationWidget, &SoundVisualizationWidget::playSelectedFileRequested, this, &AudioWidget::handlePlaySelectedFileRequested);
+
 
     // Enable drag on the tree view
     fileTreeView->setDragEnabled(true);
@@ -188,6 +190,7 @@ AudioWidget::AudioWidget(QWidget *parent)
     setupVisualization();
 }
 
+//============================================================LEFT============================================================
 void AudioWidget::setFile(const QString &file)
 {
     fileEdit->setText(file);
@@ -217,15 +220,15 @@ void AudioWidget::playAudio()
     }
 }
 
-// audiowidget.cpp
+//==========================================================Center===========================================================
 void AudioWidget::updatePosition() {
     foreach (const QString &id, soundSources.keys()) {
-        QVector3D pos = soundVisualizationWidget->getSoundPosition(id); // Use soundVisualizationWidget
+        QVector3D pos = soundVisualizationWidget->getSoundPosition(id);
         QSpatialSound* sound = soundSources[id];
 
         // Calculate distance attenuation
-        float distance = pos.length();
-        sound->setVolume(qBound(0.0f, 1.0f - (distance / maxDistance), 1.0f)); // Use setVolume instead of setGain
+        float dist = pos.length();
+        sound->setVolume(qBound(0.0f, 1.0f - (dist / maxDistance), 1.0f));
 
         // Apply 3D positioning
         sound->setPosition(pos);
@@ -234,7 +237,6 @@ void AudioWidget::updatePosition() {
         updateOcclusion(sound, pos);
     }
 }
-
 void AudioWidget::newOcclusion()
 {
     sound->setOcclusionIntensity(occlusion->value() / 100.);
@@ -300,7 +302,6 @@ void AudioWidget::handlePositionChanged(QString id, QVector3D pos) {
     } // Add this closing brace
 }
 
-
 void AudioWidget::handleFileDropped(QString filePath, QVector3D position) {
     if (QFile::exists(filePath)) {
         QString id = QString::number(qHash(filePath));
@@ -318,26 +319,6 @@ void AudioWidget::handleFileDropped(QString filePath, QVector3D position) {
 
         soundSources[id]->setPosition(position);
         soundVisualizationWidget->addSoundSource(id, position, filePath);
-    }
-}
-
-void AudioWidget::updateKnobs(QString id, QVector3D position) {
-    // Only update if selected source matches
-    if (soundSourceSelector->currentData().toString() == id) {
-        // Convert to spherical coordinates
-        float dist = position.length();
-        float azim = qRadiansToDegrees(atan2(position.x(), position.z()));
-        float elev = qRadiansToDegrees(asin(position.y() / dist));
-
-        // Block signals while updating sliders
-        QSignalBlocker blocker(azimuth);      // azimuth is a QSlider*
-        QSignalBlocker blocker2(elevation);   // elevation is a QSlider*
-        QSignalBlocker blocker3(distance);    // distance is a QSlider*
-
-        // Update slider values
-        distance->setValue(dist * 100); // Use distance slider
-        azimuth->setValue(azim);        // Use azimuth slider
-        elevation->setValue(elev);      // Use elevation slider
     }
 }
 
@@ -382,5 +363,17 @@ void AudioWidget::handlePlaySelectedFileRequested(const QString &filePath) {
 void AudioWidget::playAllFiles() {
     foreach (QSpatialSound *sound, soundSources) {
         sound->play();
+    }
+}
+
+//===========================================================RIGHT=============================================================
+
+void AudioWidget::updateKnobs(QString id, QVector3D position) {
+    if (soundSources.contains(id)) {
+        QSpatialSound *sound = soundSources[id];
+        QVector3D pos = sound->position();
+        azimuth->setValue(static_cast<int>(pos.x()));
+        elevation->setValue(static_cast<int>(pos.y()));
+        distance->setValue(static_cast<int>((pos.length())));
     }
 }

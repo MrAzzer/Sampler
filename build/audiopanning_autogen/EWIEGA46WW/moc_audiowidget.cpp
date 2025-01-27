@@ -54,11 +54,11 @@ constexpr auto qt_meta_stringdata_CLASSAudioWidgetENDCLASS = QtMocHelpers::strin
     "handleFileDropped",
     "filePath",
     "position",
-    "updateKnobs",
     "onSoundSourceSelected",
     "index",
-    "handlePlaySelectedFileRequested",
-    "playAllFiles"
+    "updateKnobs",
+    "playAllFiles",
+    "handlePlaySelectedFileRequested"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -89,10 +89,10 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSAudioWidgetENDCLASS[] = {
       10,    1,  107,    2, 0x08,    9 /* Private */,
       12,    2,  110,    2, 0x08,   11 /* Private */,
       15,    2,  115,    2, 0x08,   14 /* Private */,
-      18,    2,  120,    2, 0x08,   17 /* Private */,
-      19,    1,  125,    2, 0x08,   20 /* Private */,
-      21,    1,  128,    2, 0x08,   22 /* Private */,
-      22,    0,  131,    2, 0x08,   24 /* Private */,
+      18,    1,  120,    2, 0x08,   17 /* Private */,
+      20,    2,  123,    2, 0x08,   19 /* Private */,
+      21,    0,  128,    2, 0x08,   22 /* Private */,
+      22,    1,  129,    2, 0x0a,   23 /* Public */,
 
  // slots: parameters
     QMetaType::Void,
@@ -105,10 +105,10 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSAudioWidgetENDCLASS[] = {
     QMetaType::Void, QMetaType::Bool,   11,
     QMetaType::Void, QMetaType::QString, QMetaType::QVector3D,   13,   14,
     QMetaType::Void, QMetaType::QString, QMetaType::QVector3D,   16,   17,
+    QMetaType::Void, QMetaType::Int,   19,
     QMetaType::Void, QMetaType::QString, QMetaType::QVector3D,   13,   17,
-    QMetaType::Void, QMetaType::Int,   20,
-    QMetaType::Void, QMetaType::QString,   16,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,   16,
 
        0        // eod
 };
@@ -148,18 +148,18 @@ Q_CONSTINIT const QMetaObject AudioWidget::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         QtPrivate::TypeAndForceComplete<QVector3D, std::false_type>,
+        // method 'onSoundSourceSelected'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'updateKnobs'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         QtPrivate::TypeAndForceComplete<QVector3D, std::false_type>,
-        // method 'onSoundSourceSelected'
+        // method 'playAllFiles'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'handlePlaySelectedFileRequested'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
-        // method 'playAllFiles'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>
     >,
     nullptr
 } };
@@ -180,10 +180,10 @@ void AudioWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 7: _t->animateChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         case 8: _t->handlePositionChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QVector3D>>(_a[2]))); break;
         case 9: _t->handleFileDropped((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QVector3D>>(_a[2]))); break;
-        case 10: _t->updateKnobs((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QVector3D>>(_a[2]))); break;
-        case 11: _t->onSoundSourceSelected((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 12: _t->handlePlaySelectedFileRequested((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 13: _t->playAllFiles(); break;
+        case 10: _t->onSoundSourceSelected((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 11: _t->updateKnobs((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QVector3D>>(_a[2]))); break;
+        case 12: _t->playAllFiles(); break;
+        case 13: _t->handlePlaySelectedFileRequested((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     }
