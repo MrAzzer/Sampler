@@ -29,6 +29,9 @@ class AudioWidget : public QWidget
 public:
     AudioWidget(QWidget *parent = nullptr);
     void setFile(const QString &file);
+    void setSaveLocation(const QString &location);
+
+
 private slots:
     void playAudio();
     void updatePosition();
@@ -38,6 +41,8 @@ private slots:
     void openFileDialog();
     void updateRoom();
     void animateChanged(bool checked);
+    void fileSelected(const QItemSelection &selected, const QItemSelection &deselected);
+
 private:
     QLineEdit *fileEdit;
     QPushButton *fileDialogButton;
@@ -61,5 +66,17 @@ private:
     QSpatialSound *sound;
     QPropertyAnimation *animation;
     SoundVisualizationWidget *soundVisualizationWidget;
+    QMap<QString, QVariantMap> fileParameters;
+    QLineEdit *saveLocationEdit;
+    QPushButton *saveLocationButton;
+    QVBoxLayout *rightPanel;
+    QString filePath;
+
+public slots:
+    void chooseSaveLocation();
+    void saveProcessedFile();
+
 };
+
+
 #endif // AUDIOWIDGET_H

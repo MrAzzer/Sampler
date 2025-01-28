@@ -22,49 +22,82 @@ AudioWidget::AudioWidget(QWidget *parent)
     fileTreeView->setRootIndex(fileSystemModel->index("/Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler/Spatial-Audio-Plugin/sample"));
     leftPanel->addWidget(fileTreeView);
     mainLayout->addLayout(leftPanel);
+
+
+
+    // Play and Save buttons
+    saveLocationButton = new QPushButton(tr("Save File"));
+    leftPanel->addWidget(saveLocationButton);
+
+    mainLayout->addLayout(leftPanel);
+    connect(saveLocationButton, &QPushButton::clicked, this, &AudioWidget::saveProcessedFile);
+    connect(fileTreeView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &AudioWidget::fileSelected);
+
+    // Saving Files
+    auto *saveLayout = new QHBoxLayout;
+    auto *saveLocationLabel = new QLabel(tr("Save Location:"));
+    saveLayout->addWidget(saveLocationLabel);
+
+    saveLocationEdit = new QLineEdit; // To display the selected directory
+    saveLocationEdit->setPlaceholderText(tr("Choose save location..."));
+    saveLayout->addWidget(saveLocationEdit);
+
+    saveLocationButton = new QPushButton(tr("Choose..."));
+    saveLayout->addWidget(saveLocationButton);
+    leftPanel->addLayout(saveLayout);
+
+    // Right Panel: Knobs (Sliders)
+    rightPanel = new QVBoxLayout;
+
+    auto *saveButton = new QPushButton(tr("Save Processed File"));
+    rightPanel->addWidget(saveButton);
+
     // Center Panel: 3D Visualization
     auto *centerPanel = new QWidget;
     centerPanel->setStyleSheet("background-color: #333;"); // Dark background for visualization
     auto *centerLayout = new QVBoxLayout(centerPanel);
+
     // Add a label for the visualization
     auto *visualizationLabel = new QLabel(tr("Sound Source Visualization"));
     visualizationLabel->setAlignment(Qt::AlignCenter);
     visualizationLabel->setStyleSheet("color: white; font-size: 16px;");
     centerLayout->addWidget(visualizationLabel);
+
     // Add the custom visualization widget
     soundVisualizationWidget = new SoundVisualizationWidget;
     centerLayout->addWidget(soundVisualizationWidget);
     mainLayout->addWidget(centerPanel);
+
     // Right Panel: Knobs (Sliders)
     auto *rightPanel = new QVBoxLayout;
-    rightPanel->addWidget(new QLabel(tr("Azimuth (-180 - 180 degree):")));
+    rightPanel->addWidget(new QLabel(tr("Azimuth:")));
     azimuth = new QSlider(Qt::Horizontal);
     azimuth->setRange(-180, 180);
     rightPanel->addWidget(azimuth);
-    rightPanel->addWidget(new QLabel(tr("Elevation (-90 - 90 degree):")));
+    rightPanel->addWidget(new QLabel(tr("Elevation:")));
     elevation = new QSlider(Qt::Horizontal);
     elevation->setRange(-90, 90);
     rightPanel->addWidget(elevation);
-    rightPanel->addWidget(new QLabel(tr("Distance (0 - 10 meter):")));
+    rightPanel->addWidget(new QLabel(tr("Distance:")));
     distance = new QSlider(Qt::Horizontal);
     distance->setRange(0, 1000);
     distance->setValue(100);
     rightPanel->addWidget(distance);
-    rightPanel->addWidget(new QLabel(tr("Occlusion (0 - 4):")));
+    rightPanel->addWidget(new QLabel(tr("Occlusion:")));
     occlusion = new QSlider(Qt::Horizontal);
     occlusion->setRange(0, 400);
     rightPanel->addWidget(occlusion);
-    rightPanel->addWidget(new QLabel(tr("Room dimension (0 - 100 meter):")));
+    rightPanel->addWidget(new QLabel(tr("Room dimension:")));
     roomDimension = new QSlider(Qt::Horizontal);
     roomDimension->setRange(0, 10000);
     roomDimension->setValue(1000);
     rightPanel->addWidget(roomDimension);
-    rightPanel->addWidget(new QLabel(tr("Reverb gain (0-5):")));
+    rightPanel->addWidget(new QLabel(tr("Reverb gain:")));
     reverbGain = new QSlider(Qt::Horizontal);
     reverbGain->setRange(0, 500);
     reverbGain->setValue(0);
     rightPanel->addWidget(reverbGain);
-    rightPanel->addWidget(new QLabel(tr("Reflection gain (0-5):")));
+    rightPanel->addWidget(new QLabel(tr("Reflection gain:")));
     reflectionGain = new QSlider(Qt::Horizontal);
     reflectionGain->setRange(0, 500);
     reflectionGain->setValue(0);
@@ -94,6 +127,15 @@ AudioWidget::AudioWidget(QWidget *parent)
     connect(reflectionGain, &QSlider::valueChanged, this, &AudioWidget::updateRoom);
     connect(mode, &QComboBox::currentIndexChanged, this, &AudioWidget::modeChanged);
     connect(animateButton, &QCheckBox::toggled, this, &AudioWidget::animateChanged);
+    connect(saveButton, &QPushButton::clicked, this, &AudioWidget::saveProcessedFile);
+    connect(fileTreeView->selectionModel(), &QItemSelectionModel::selectionChanged, this, [this](const QItemSelection &selected, const QItemSelection &deselected) {
+        fileSelected(selected, deselected);
+    });
+
+
+
+    connect(saveLocationButton, &QPushButton::clicked, this, &AudioWidget::chooseSaveLocation);
+
     // Initialize audio components
     room = new QAudioRoom(&engine);
     room->setWallMaterial(QAudioRoom::BackWall, QAudioRoom::Marble);
@@ -115,6 +157,7 @@ AudioWidget::AudioWidget(QWidget *parent)
     animation->setEndValue(180);
     animation->setLoopCount(-1);
 }
+
 void AudioWidget::setFile(const QString &file)
 {
     fileEdit->setText(file);
@@ -191,6 +234,61 @@ void AudioWidget::updateRoom()
     room->setReflectionGain(float(reflectionGain->value()) / 100);
     room->setReverbGain(float(reverbGain->value()) / 100);
 }
+
+void AudioWidget::fileSelected(const QItemSelection &selected, const QItemSelection &deselected)
+{
+    Q_UNUSED(deselected); // Unused parameter
+    if (!selected.isEmpty()) {
+        QModelIndex index = selected.indexes().first();
+        QString selectedFile = fileSystemModel->filePath(index);
+        fileEdit->setText(selectedFile);
+        playButton->setEnabled(true);
+        saveLocationButton->setEnabled(true);
+
+    } else {
+        playButton->setEnabled(false);
+        saveLocationButton->setEnabled(false);
+    }
+}
+
+
+
+
+void AudioWidget::chooseSaveLocation()
+{
+    QString directory = QFileDialog::getExistingDirectory(
+        this, tr("Select Save Location"),
+        QStandardPaths::writableLocation(QStandardPaths::MusicLocation)
+    );
+
+    if (!directory.isEmpty()) {
+        saveLocationEdit->setText(directory);
+    }
+}
+
+void AudioWidget::saveProcessedFile()
+{
+    if (fileEdit->text().isEmpty()) {
+        QMessageBox::warning(this, tr("Error"), tr("No valid audio file to process."));
+        return;
+    }
+
+    if (saveLocationEdit->text().isEmpty()) {
+        QMessageBox::warning(this, tr("Error"), tr("Please select a save location."));
+        return;
+    }
+
+    QString originalFileName = QFileInfo(fileEdit->text()).fileName();
+    QString savePath = QDir(saveLocationEdit->text()).filePath("Processed_" + originalFileName);
+
+    // Simulate saving the processed audio (replace with actual processing logic if needed)
+    if (QFile::copy(fileEdit->text(), savePath)) {
+        QMessageBox::information(this, tr("Success"), tr("Processed file saved to: %1").arg(savePath));
+    } else {
+        QMessageBox::warning(this, tr("Error"), tr("Failed to save the file."));
+    }
+}
+
 void AudioWidget::animateChanged(bool checked)
 {
     if (checked)
