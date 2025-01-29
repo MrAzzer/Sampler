@@ -1,5 +1,8 @@
 #ifndef AUDIOWIDGET_H
 #define AUDIOWIDGET_H
+
+#include <sndfile.h>
+#include <sox.h>
 #include <QWidget>
 #include <QAudioEngine>
 #include <QAudioListener>
@@ -21,16 +24,21 @@
 #include <QStandardPaths>
 #include <QCommandLineParser>
 #include <QDir>
+#include <QFile>
+#include <QTextStream>
 #include <cmath>
+
 class SoundVisualizationWidget;
+
 class AudioWidget : public QWidget
 {
     Q_OBJECT
+
 public:
     AudioWidget(QWidget *parent = nullptr);
     void setFile(const QString &file);
-    void setSaveLocation(const QString &location);
-
+    void saveProcessedFile(const QString &format);
+    ~AudioWidget() override;
 
 private slots:
     void playAudio();
@@ -42,6 +50,8 @@ private slots:
     void updateRoom();
     void animateChanged(bool checked);
     void fileSelected(const QItemSelection &selected, const QItemSelection &deselected);
+    void chooseSaveLocation();
+    void applySpatialEffects(QByteArray &audioData);
 
 private:
     QLineEdit *fileEdit;
@@ -66,17 +76,12 @@ private:
     QSpatialSound *sound;
     QPropertyAnimation *animation;
     SoundVisualizationWidget *soundVisualizationWidget;
-    QMap<QString, QVariantMap> fileParameters;
-    QLineEdit *saveLocationEdit;
     QPushButton *saveLocationButton;
-    QVBoxLayout *rightPanel;
-    QString filePath;
+    QLineEdit *saveLocationEdit;
 
-public slots:
-    void chooseSaveLocation();
-    void saveProcessedFile();
-
+    QVBoxLayout* rightPanel;
+    QString selectedFile;  // Store the selected file path
+    QString saveLocation;  // Store the location where the file will be saved
 };
-
 
 #endif // AUDIOWIDGET_H

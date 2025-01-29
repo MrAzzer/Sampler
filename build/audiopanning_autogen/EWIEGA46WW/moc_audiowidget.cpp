@@ -53,7 +53,9 @@ constexpr auto qt_meta_stringdata_CLASSAudioWidgetENDCLASS = QtMocHelpers::strin
     "selected",
     "deselected",
     "chooseSaveLocation",
-    "saveProcessedFile"
+    "applySpatialEffects",
+    "QByteArray&",
+    "audioData"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -83,8 +85,8 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSAudioWidgetENDCLASS[] = {
        9,    0,   88,    2, 0x08,    8 /* Private */,
       10,    1,   89,    2, 0x08,    9 /* Private */,
       12,    2,   92,    2, 0x08,   11 /* Private */,
-      16,    0,   97,    2, 0x0a,   14 /* Public */,
-      17,    0,   98,    2, 0x0a,   15 /* Public */,
+      16,    0,   97,    2, 0x08,   14 /* Private */,
+      17,    1,   98,    2, 0x08,   15 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -97,7 +99,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSAudioWidgetENDCLASS[] = {
     QMetaType::Void, QMetaType::Bool,   11,
     QMetaType::Void, 0x80000000 | 13, 0x80000000 | 13,   14,   15,
     QMetaType::Void,
-    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 18,   19,
 
        0        // eod
 };
@@ -135,8 +137,9 @@ Q_CONSTINIT const QMetaObject AudioWidget::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<const QItemSelection &, std::false_type>,
         // method 'chooseSaveLocation'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'saveProcessedFile'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        // method 'applySpatialEffects'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QByteArray &, std::false_type>
     >,
     nullptr
 } };
@@ -157,7 +160,7 @@ void AudioWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 7: _t->animateChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         case 8: _t->fileSelected((*reinterpret_cast< std::add_pointer_t<QItemSelection>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QItemSelection>>(_a[2]))); break;
         case 9: _t->chooseSaveLocation(); break;
-        case 10: _t->saveProcessedFile(); break;
+        case 10: _t->applySpatialEffects((*reinterpret_cast< std::add_pointer_t<QByteArray&>>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
