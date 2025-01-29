@@ -288,67 +288,90 @@ void AudioWidget::saveProcessedFile(const QString &format) {
     QFileInfo inputInfo(selectedFile);
     QString outputPath = QDir(saveLocation).filePath(inputInfo.baseName() + "_processed." + format);
 
+    // Open the input file
     sox_format_t *in = sox_open_read(selectedFile.toUtf8().constData(), nullptr, nullptr, nullptr);
     if (!in) {
         QMessageBox::critical(this, "Error", "Failed to open input file");
         return;
     }
 
-    // Check the encoding directly from the sox_format_t structure
-    if (in->encoding.encoding != SOX_ENCODING_FLOAT) {
-        QMessageBox::critical(this, "Error", "Input file must be in floating point format for spatial processing");
-        sox_close(in);
-        return;
-    }
+    // Prepare the output signal format, ensure it's in float encoding
+    sox_signalinfo_t output_signal = in->signal;
+    sox_encodinginfo_t output_encoding = in->encoding;
+    output_encoding.encoding = SOX_ENCODING_FLOAT;  // Set to floating-point encoding
 
-    QByteArray audioData;
-    audioData.resize(in->signal.length);
-    sox_sample_t *audioBuffer = reinterpret_cast<sox_sample_t *>(audioData.data());
-    sox_read(in, audioBuffer, audioData.size() / sizeof(sox_sample_t));
-    applySpatialEffects(audioData);
-
-    sox_format_t *out = sox_open_write(outputPath.toUtf8().constData(), &in->signal, nullptr, format.toUtf8().constData(), nullptr, nullptr);
+    // Open the output file
+    sox_format_t *out = sox_open_write(outputPath.toUtf8().constData(), &output_signal, &output_encoding, format.toUtf8().constData(), nullptr, nullptr);
     if (!out) {
         sox_close(in);
         QMessageBox::critical(this, "Error", "Failed to create output file");
         return;
     }
 
-    sox_write(out, audioBuffer, audioData.size() / sizeof(sox_sample_t));
+    // Prepare buffers for reading and writing data
+    size_t numSamples = in->signal.length;
+    QByteArray audioData(numSamples * sizeof(float), 0);  // Initialize with zeros
+    float *audioBuffer = reinterpret_cast<float *>(audioData.data());
+
+    // Read and convert samples if needed
+    if (in->encoding.encoding != SOX_ENCODING_FLOAT) {
+        // The input is not in floating-point format; convert it
+        sox_sample_t *inputBuffer = new sox_sample_t[numSamples];
+        sox_read(in, inputBuffer, numSamples);
+
+        // Convert samples to float (scaling the values)
+        for (size_t i = 0; i < numSamples; ++i) {
+            audioBuffer[i] = static_cast<float>(inputBuffer[i]) / static_cast<float>(SOX_SAMPLE_MAX);
+        }
+        delete[] inputBuffer;
+    } else {
+        // The input is already in floating-point format; just read directly
+        sox_read(in, reinterpret_cast<sox_sample_t *>(audioBuffer), numSamples);
+    }
+
+    // Apply spatial effects
+    applySpatialEffects(audioData, in->signal.rate, in->signal.channels);
+
+    // Write the processed data to the output file
+    sox_write(out, reinterpret_cast<sox_sample_t *>(audioData.data()), numSamples);
+
+    // Clean up
     sox_close(out);
     sox_close(in);
 
     QMessageBox::information(this, "Success", "File saved successfully");
 }
 
-void AudioWidget::applySpatialEffects(QByteArray &audioData) {
-    // Only apply effects if parameters (e.g., position) have changed
-    static float lastAzimuth = azimuth->value();
-    static float lastElevation = elevation->value();
-    static float lastDistance = distance->value();
+void AudioWidget::applySpatialEffects(QByteArray &audioData, sox_rate_t sampleRate, unsigned channels) {
+    // Convert audio data to float for processing
+    float *audioBuffer = reinterpret_cast<float *>(audioData.data());
+    size_t numSamples = audioData.size() / sizeof(float);
 
-    // Check if any parameters have changed
-    if (azimuth->value() != lastAzimuth || elevation->value() != lastElevation || distance->value() != lastDistance) {
-        lastAzimuth = azimuth->value();
-        lastElevation = elevation->value();
-        lastDistance = distance->value();
+    // Apply spatial effects
+    const float az = azimuth->value() / 180. * M_PI;
+    const float el = elevation->value() / 180. * M_PI;
+    const float d = distance->value();
+    const float x = d * sin(az) * cos(el);  // Use x if needed
+    const float y = d * sin(el);  // Use y if needed
+    const float z = -d * cos(az) * cos(el);  // Use z if needed
 
-        // Apply listener positioning, room acoustics, occlusion, etc.
-        const float az = azimuth->value() / 180. * M_PI;
-        const float el = elevation->value() / 180. * M_PI;
-        const float d = distance->value();
-        const float x = d * sin(az) * cos(el);
-        const float y = d * sin(el);
-        const float z = -d * cos(az) * cos(el);
-
-        // Update the sound's position
-        sound->setPosition({x, y, z});
-
-        // Apply other spatial effects like occlusion
-        sound->setOcclusionIntensity(occlusion->value() / 100.0);
-        updateRoom();  // Update room effects like reverb
-
+    // Example: Apply a simple gain based on distance (attenuation)
+    float gain = 1.0f / (1.0f + d); // Simple distance attenuation
+    for (size_t i = 0; i < numSamples; ++i) {
+        audioBuffer[i] *= gain;
     }
+
+    // Apply occlusion (low-pass filter effect)
+    float occlusionGain = occlusion->value() / 100.0f;
+    // Implement a low-pass filter here (e.g., using a Butterworth filter)
+
+    // Apply reverb (you can use a reverb library or implement your own)
+    float reverbGainValue = reverbGain->value() / 100.0f;
+    // Implement reverb processing here
+
+    // Apply reflection gain
+    float reflectionGainValue = reflectionGain->value() / 100.0f;
+    // Implement reflection processing here
 }
 
 void AudioWidget::animateChanged(bool checked) {

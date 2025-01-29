@@ -51,7 +51,7 @@ private slots:
     void animateChanged(bool checked);
     void fileSelected(const QItemSelection &selected, const QItemSelection &deselected);
     void chooseSaveLocation();
-    void applySpatialEffects(QByteArray &audioData);
+    void applySpatialEffects(QByteArray &audioData, sox_rate_t sampleRate, unsigned channels);
 
 private:
     QLineEdit *fileEdit;
