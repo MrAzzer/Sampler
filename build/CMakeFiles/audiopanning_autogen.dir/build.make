@@ -53,10 +53,10 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2
+CMAKE_SOURCE_DIR = /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build
+CMAKE_BINARY_DIR = /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build
 
 # Utility rule file for audiopanning_autogen.
 
@@ -71,9 +71,9 @@ CMakeFiles/audiopanning_autogen: audiopanning_autogen/timestamp
 audiopanning_autogen/timestamp: /opt/homebrew/share/qt/libexec/moc
 audiopanning_autogen/timestamp: /opt/homebrew/share/qt/libexec/uic
 audiopanning_autogen/timestamp: CMakeFiles/audiopanning_autogen.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target audiopanning"
-	/opt/homebrew/bin/cmake -E cmake_autogen /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/CMakeFiles/audiopanning_autogen.dir/AutogenInfo.json ""
-	/opt/homebrew/bin/cmake -E touch /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/audiopanning_autogen/timestamp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target audiopanning"
+	/opt/homebrew/bin/cmake -E cmake_autogen /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build/CMakeFiles/audiopanning_autogen.dir/AutogenInfo.json ""
+	/opt/homebrew/bin/cmake -E touch /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build/audiopanning_autogen/timestamp
 
 CMakeFiles/audiopanning_autogen.dir/codegen:
 .PHONY : CMakeFiles/audiopanning_autogen.dir/codegen
@@ -92,6 +92,6 @@ CMakeFiles/audiopanning_autogen.dir/clean:
 .PHONY : CMakeFiles/audiopanning_autogen.dir/clean
 
 CMakeFiles/audiopanning_autogen.dir/depend:
-	cd /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2 /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2 /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/CMakeFiles/audiopanning_autogen.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build/CMakeFiles/audiopanning_autogen.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/audiopanning_autogen.dir/depend
 

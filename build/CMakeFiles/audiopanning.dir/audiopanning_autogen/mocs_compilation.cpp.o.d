@@ -1,7 +1,7 @@
 CMakeFiles/audiopanning.dir/audiopanning_autogen/mocs_compilation.cpp.o: \
-  /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/audiopanning_autogen/mocs_compilation.cpp \
-  /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/audiopanning_autogen/EWIEGA46WW/moc_audiowidget.cpp \
-  /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/audiopanning_autogen/EWIEGA46WW/../../../audiowidget.h \
+  /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build/audiopanning_autogen/mocs_compilation.cpp \
+  /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build/audiopanning_autogen/EWIEGA46WW/moc_audiowidget.cpp \
+  /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build/audiopanning_autogen/EWIEGA46WW/../../../audiowidget.h \
   /opt/homebrew/Cellar/libsndfile/1.2.2/include/sndfile.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/c++/v1/stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/c++/v1/__config \
@@ -1273,7 +1273,7 @@ CMakeFiles/audiopanning.dir/audiopanning_autogen/mocs_compilation.cpp.o: \
   /opt/homebrew/lib/QtCore.framework/Headers/QTextStream \
   /opt/homebrew/lib/QtCore.framework/Headers/qtextstream.h \
   /opt/homebrew/include/QtCore/qtmochelpers.h \
-  /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/audiopanning_autogen/EWIEGA46WW/moc_soundvisualizationwidget.cpp \
-  /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/audiopanning_autogen/EWIEGA46WW/../../../soundvisualizationwidget.h \
+  /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build/audiopanning_autogen/EWIEGA46WW/moc_soundvisualizationwidget.cpp \
+  /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build/audiopanning_autogen/EWIEGA46WW/../../../soundvisualizationwidget.h \
   /opt/homebrew/lib/QtGui.framework/Headers/QPainter \
   /opt/homebrew/lib/QtGui.framework/Headers/qpainter.h

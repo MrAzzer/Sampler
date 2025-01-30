@@ -50,7 +50,6 @@ private slots:
     void updateRoom();
     void animateChanged(bool checked);
     void fileSelected(const QItemSelection &selected, const QItemSelection &deselected);
-    void chooseSaveLocation();
     void applySpatialEffects(QByteArray &audioData, sox_rate_t sampleRate, unsigned channels);
 
 private:

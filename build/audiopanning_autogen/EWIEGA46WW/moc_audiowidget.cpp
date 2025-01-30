@@ -52,7 +52,6 @@ constexpr auto qt_meta_stringdata_CLASSAudioWidgetENDCLASS = QtMocHelpers::strin
     "QItemSelection",
     "selected",
     "deselected",
-    "chooseSaveLocation",
     "applySpatialEffects",
     "QByteArray&",
     "audioData",
@@ -71,7 +70,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSAudioWidgetENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      11,   14, // methods
+      10,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -79,17 +78,16 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSAudioWidgetENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   80,    2, 0x08,    1 /* Private */,
-       3,    0,   81,    2, 0x08,    2 /* Private */,
-       4,    0,   82,    2, 0x08,    3 /* Private */,
-       5,    0,   83,    2, 0x08,    4 /* Private */,
-       6,    1,   84,    2, 0x08,    5 /* Private */,
-       8,    0,   87,    2, 0x08,    7 /* Private */,
-       9,    0,   88,    2, 0x08,    8 /* Private */,
-      10,    1,   89,    2, 0x08,    9 /* Private */,
-      12,    2,   92,    2, 0x08,   11 /* Private */,
-      16,    0,   97,    2, 0x08,   14 /* Private */,
-      17,    3,   98,    2, 0x08,   15 /* Private */,
+       1,    0,   74,    2, 0x08,    1 /* Private */,
+       3,    0,   75,    2, 0x08,    2 /* Private */,
+       4,    0,   76,    2, 0x08,    3 /* Private */,
+       5,    0,   77,    2, 0x08,    4 /* Private */,
+       6,    1,   78,    2, 0x08,    5 /* Private */,
+       8,    0,   81,    2, 0x08,    7 /* Private */,
+       9,    0,   82,    2, 0x08,    8 /* Private */,
+      10,    1,   83,    2, 0x08,    9 /* Private */,
+      12,    2,   86,    2, 0x08,   11 /* Private */,
+      16,    3,   91,    2, 0x08,   14 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -101,8 +99,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSAudioWidgetENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void, QMetaType::Bool,   11,
     QMetaType::Void, 0x80000000 | 13, 0x80000000 | 13,   14,   15,
-    QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 18, 0x80000000 | 20, QMetaType::UInt,   19,   21,   22,
+    QMetaType::Void, 0x80000000 | 17, 0x80000000 | 19, QMetaType::UInt,   18,   20,   21,
 
        0        // eod
 };
@@ -138,8 +135,6 @@ Q_CONSTINIT const QMetaObject AudioWidget::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QItemSelection &, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QItemSelection &, std::false_type>,
-        // method 'chooseSaveLocation'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'applySpatialEffects'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QByteArray &, std::false_type>,
@@ -164,8 +159,7 @@ void AudioWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 6: _t->updateRoom(); break;
         case 7: _t->animateChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         case 8: _t->fileSelected((*reinterpret_cast< std::add_pointer_t<QItemSelection>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QItemSelection>>(_a[2]))); break;
-        case 9: _t->chooseSaveLocation(); break;
-        case 10: _t->applySpatialEffects((*reinterpret_cast< std::add_pointer_t<QByteArray&>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<sox_rate_t>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<uint>>(_a[3]))); break;
+        case 9: _t->applySpatialEffects((*reinterpret_cast< std::add_pointer_t<QByteArray&>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<sox_rate_t>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<uint>>(_a[3]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -202,13 +196,13 @@ int AudioWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 11)
+        if (_id < 10)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 11;
+        _id -= 10;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 11)
+        if (_id < 10)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 11;
+        _id -= 10;
     }
     return _id;
 }

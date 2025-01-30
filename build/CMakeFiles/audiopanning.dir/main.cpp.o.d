@@ -1,5 +1,5 @@
 CMakeFiles/audiopanning.dir/main.cpp.o: \
-  /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/main.cpp \
+  /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/main.cpp \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QApplication \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qapplication.h \
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
@@ -1117,7 +1117,7 @@ CMakeFiles/audiopanning.dir/main.cpp.o: \
   /opt/homebrew/include/QtCore/qlocale.h \
   /opt/homebrew/include/QtCore/qvariant.h \
   /opt/homebrew/include/QtGui/qguiapplication_platform.h \
-  /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/audiowidget.h \
+  /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/audiowidget.h \
   /opt/homebrew/Cellar/libsndfile/1.2.2/include/sndfile.h \
   /opt/homebrew/Cellar/sox/14.4.2_5/include/sox.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QWidget \

@@ -1,6 +1,6 @@
 CMakeFiles/audiopanning.dir/audiowidget.cpp.o: \
-  /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/audiowidget.cpp \
-  /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/audiowidget.h \
+  /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/audiowidget.cpp \
+  /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/audiowidget.h \
   /opt/homebrew/Cellar/libsndfile/1.2.2/include/sndfile.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/c++/v1/stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/c++/v1/__config \
@@ -1271,6 +1271,6 @@ CMakeFiles/audiopanning.dir/audiowidget.cpp.o: \
   /opt/homebrew/lib/QtCore.framework/Headers/qfile.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QTextStream \
   /opt/homebrew/lib/QtCore.framework/Headers/qtextstream.h \
-  /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/soundvisualizationwidget.h \
+  /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/soundvisualizationwidget.h \
   /opt/homebrew/lib/QtGui.framework/Headers/QPainter \
   /opt/homebrew/lib/QtGui.framework/Headers/qpainter.h

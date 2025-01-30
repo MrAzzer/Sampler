@@ -1,5 +1,5 @@
-/Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/audiopanning_autogen/EWIEGA46WW/moc_soundvisualizationwidget.cpp: /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/soundvisualizationwidget.h \
-  /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/audiopanning_autogen/moc_predefs.h \
+/Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build/audiopanning_autogen/EWIEGA46WW/moc_soundvisualizationwidget.cpp: /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/soundvisualizationwidget.h \
+  /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build/audiopanning_autogen/moc_predefs.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/Availability.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/AvailabilityInternal.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/AvailabilityInternalLegacy.h \

@@ -53,10 +53,10 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2
+CMAKE_SOURCE_DIR = /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build
+CMAKE_BINARY_DIR = /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/audiopanning.dir/depend.make
@@ -72,9 +72,9 @@ include CMakeFiles/audiopanning.dir/flags.make
 audiopanning_autogen/timestamp: /opt/homebrew/share/qt/libexec/moc
 audiopanning_autogen/timestamp: /opt/homebrew/share/qt/libexec/uic
 audiopanning_autogen/timestamp: CMakeFiles/audiopanning.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target audiopanning"
-	/opt/homebrew/bin/cmake -E cmake_autogen /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/CMakeFiles/audiopanning_autogen.dir/AutogenInfo.json ""
-	/opt/homebrew/bin/cmake -E touch /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/audiopanning_autogen/timestamp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target audiopanning"
+	/opt/homebrew/bin/cmake -E cmake_autogen /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build/CMakeFiles/audiopanning_autogen.dir/AutogenInfo.json ""
+	/opt/homebrew/bin/cmake -E touch /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build/audiopanning_autogen/timestamp
 
 CMakeFiles/audiopanning.dir/codegen:
 .PHONY : CMakeFiles/audiopanning.dir/codegen
@@ -82,58 +82,58 @@ CMakeFiles/audiopanning.dir/codegen:
 CMakeFiles/audiopanning.dir/audiopanning_autogen/mocs_compilation.cpp.o: CMakeFiles/audiopanning.dir/flags.make
 CMakeFiles/audiopanning.dir/audiopanning_autogen/mocs_compilation.cpp.o: audiopanning_autogen/mocs_compilation.cpp
 CMakeFiles/audiopanning.dir/audiopanning_autogen/mocs_compilation.cpp.o: CMakeFiles/audiopanning.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/audiopanning.dir/audiopanning_autogen/mocs_compilation.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/audiopanning.dir/audiopanning_autogen/mocs_compilation.cpp.o -MF CMakeFiles/audiopanning.dir/audiopanning_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/audiopanning.dir/audiopanning_autogen/mocs_compilation.cpp.o -c /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/audiopanning_autogen/mocs_compilation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/audiopanning.dir/audiopanning_autogen/mocs_compilation.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/audiopanning.dir/audiopanning_autogen/mocs_compilation.cpp.o -MF CMakeFiles/audiopanning.dir/audiopanning_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/audiopanning.dir/audiopanning_autogen/mocs_compilation.cpp.o -c /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build/audiopanning_autogen/mocs_compilation.cpp
 
 CMakeFiles/audiopanning.dir/audiopanning_autogen/mocs_compilation.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/audiopanning.dir/audiopanning_autogen/mocs_compilation.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/audiopanning_autogen/mocs_compilation.cpp > CMakeFiles/audiopanning.dir/audiopanning_autogen/mocs_compilation.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build/audiopanning_autogen/mocs_compilation.cpp > CMakeFiles/audiopanning.dir/audiopanning_autogen/mocs_compilation.cpp.i
 
 CMakeFiles/audiopanning.dir/audiopanning_autogen/mocs_compilation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/audiopanning.dir/audiopanning_autogen/mocs_compilation.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/audiopanning_autogen/mocs_compilation.cpp -o CMakeFiles/audiopanning.dir/audiopanning_autogen/mocs_compilation.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build/audiopanning_autogen/mocs_compilation.cpp -o CMakeFiles/audiopanning.dir/audiopanning_autogen/mocs_compilation.cpp.s
 
 CMakeFiles/audiopanning.dir/main.cpp.o: CMakeFiles/audiopanning.dir/flags.make
-CMakeFiles/audiopanning.dir/main.cpp.o: /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/main.cpp
+CMakeFiles/audiopanning.dir/main.cpp.o: /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/main.cpp
 CMakeFiles/audiopanning.dir/main.cpp.o: CMakeFiles/audiopanning.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/audiopanning.dir/main.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/audiopanning.dir/main.cpp.o -MF CMakeFiles/audiopanning.dir/main.cpp.o.d -o CMakeFiles/audiopanning.dir/main.cpp.o -c /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/audiopanning.dir/main.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/audiopanning.dir/main.cpp.o -MF CMakeFiles/audiopanning.dir/main.cpp.o.d -o CMakeFiles/audiopanning.dir/main.cpp.o -c /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/main.cpp
 
 CMakeFiles/audiopanning.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/audiopanning.dir/main.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/main.cpp > CMakeFiles/audiopanning.dir/main.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/main.cpp > CMakeFiles/audiopanning.dir/main.cpp.i
 
 CMakeFiles/audiopanning.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/audiopanning.dir/main.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/main.cpp -o CMakeFiles/audiopanning.dir/main.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/main.cpp -o CMakeFiles/audiopanning.dir/main.cpp.s
 
 CMakeFiles/audiopanning.dir/audiowidget.cpp.o: CMakeFiles/audiopanning.dir/flags.make
-CMakeFiles/audiopanning.dir/audiowidget.cpp.o: /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/audiowidget.cpp
+CMakeFiles/audiopanning.dir/audiowidget.cpp.o: /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/audiowidget.cpp
 CMakeFiles/audiopanning.dir/audiowidget.cpp.o: CMakeFiles/audiopanning.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/audiopanning.dir/audiowidget.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/audiopanning.dir/audiowidget.cpp.o -MF CMakeFiles/audiopanning.dir/audiowidget.cpp.o.d -o CMakeFiles/audiopanning.dir/audiowidget.cpp.o -c /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/audiowidget.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/audiopanning.dir/audiowidget.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/audiopanning.dir/audiowidget.cpp.o -MF CMakeFiles/audiopanning.dir/audiowidget.cpp.o.d -o CMakeFiles/audiopanning.dir/audiowidget.cpp.o -c /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/audiowidget.cpp
 
 CMakeFiles/audiopanning.dir/audiowidget.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/audiopanning.dir/audiowidget.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/audiowidget.cpp > CMakeFiles/audiopanning.dir/audiowidget.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/audiowidget.cpp > CMakeFiles/audiopanning.dir/audiowidget.cpp.i
 
 CMakeFiles/audiopanning.dir/audiowidget.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/audiopanning.dir/audiowidget.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/audiowidget.cpp -o CMakeFiles/audiopanning.dir/audiowidget.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/audiowidget.cpp -o CMakeFiles/audiopanning.dir/audiowidget.cpp.s
 
 CMakeFiles/audiopanning.dir/soundvisualizationwidget.cpp.o: CMakeFiles/audiopanning.dir/flags.make
-CMakeFiles/audiopanning.dir/soundvisualizationwidget.cpp.o: /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/soundvisualizationwidget.cpp
+CMakeFiles/audiopanning.dir/soundvisualizationwidget.cpp.o: /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/soundvisualizationwidget.cpp
 CMakeFiles/audiopanning.dir/soundvisualizationwidget.cpp.o: CMakeFiles/audiopanning.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/audiopanning.dir/soundvisualizationwidget.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/audiopanning.dir/soundvisualizationwidget.cpp.o -MF CMakeFiles/audiopanning.dir/soundvisualizationwidget.cpp.o.d -o CMakeFiles/audiopanning.dir/soundvisualizationwidget.cpp.o -c /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/soundvisualizationwidget.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/audiopanning.dir/soundvisualizationwidget.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/audiopanning.dir/soundvisualizationwidget.cpp.o -MF CMakeFiles/audiopanning.dir/soundvisualizationwidget.cpp.o.d -o CMakeFiles/audiopanning.dir/soundvisualizationwidget.cpp.o -c /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/soundvisualizationwidget.cpp
 
 CMakeFiles/audiopanning.dir/soundvisualizationwidget.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/audiopanning.dir/soundvisualizationwidget.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/soundvisualizationwidget.cpp > CMakeFiles/audiopanning.dir/soundvisualizationwidget.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/soundvisualizationwidget.cpp > CMakeFiles/audiopanning.dir/soundvisualizationwidget.cpp.i
 
 CMakeFiles/audiopanning.dir/soundvisualizationwidget.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/audiopanning.dir/soundvisualizationwidget.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/soundvisualizationwidget.cpp -o CMakeFiles/audiopanning.dir/soundvisualizationwidget.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/soundvisualizationwidget.cpp -o CMakeFiles/audiopanning.dir/soundvisualizationwidget.cpp.s
 
 # Object files for target audiopanning
 audiopanning_OBJECTS = \
@@ -157,7 +157,7 @@ audiopanning: /opt/homebrew/lib/QtGui.framework/Versions/A/QtGui
 audiopanning: /opt/homebrew/lib/QtNetwork.framework/Versions/A/QtNetwork
 audiopanning: /opt/homebrew/lib/QtCore.framework/Versions/A/QtCore
 audiopanning: CMakeFiles/audiopanning.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable audiopanning"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable audiopanning"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/audiopanning.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -169,6 +169,6 @@ CMakeFiles/audiopanning.dir/clean:
 .PHONY : CMakeFiles/audiopanning.dir/clean
 
 CMakeFiles/audiopanning.dir/depend: audiopanning_autogen/timestamp
-	cd /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2 /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2 /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/Sampler2/build/CMakeFiles/audiopanning.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build /Users/spikespiegel/Library/CloudStorage/OneDrive-UniwersytetWrocławski/Uwr/GGWPAMDONE/build/CMakeFiles/audiopanning.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/audiopanning.dir/depend
 
