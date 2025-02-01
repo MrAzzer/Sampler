@@ -2,7 +2,6 @@
 #define AUDIOWIDGET_H
 
 #include <sndfile.h>
-#include <sox.h>
 #include <QWidget>
 #include <QAudioEngine>
 #include <QAudioListener>
@@ -50,7 +49,7 @@ private slots:
     void updateRoom();
     void animateChanged(bool checked);
     void fileSelected(const QItemSelection &selected, const QItemSelection &deselected);
-    void applySpatialEffects(QByteArray &audioData, sox_rate_t sampleRate, unsigned channels);
+    void applySpatialEffects(QByteArray &audioData, int sampleRate, unsigned channels);
 
 private:
     QLineEdit *fileEdit;

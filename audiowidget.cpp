@@ -245,7 +245,7 @@ void AudioWidget::fileSelected(const QItemSelection &selected, const QItemSelect
 }
 
 
-void AudioWidget::applySpatialEffects(QByteArray &audioData, sox_rate_t /*sampleRate*/, unsigned /*channels*/) {
+void AudioWidget::applySpatialEffects(QByteArray &audioData, int /*sampleRate*/, unsigned /*channels*/) {
     float *audioBuffer = reinterpret_cast<float *>(audioData.data());
     size_t numSamples = audioData.size() / sizeof(float);
 
@@ -255,6 +255,7 @@ void AudioWidget::applySpatialEffects(QByteArray &audioData, sox_rate_t /*sample
         audioBuffer[i] *= gain;
     }
 }
+
 void AudioWidget::animateChanged(bool checked) {
     if (checked) {
         if (animation->state() != QPropertyAnimation::Running) {
