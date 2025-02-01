@@ -42,7 +42,6 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/audiopanning" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/audiopanning")
     execute_process(COMMAND /opt/anaconda3/bin/install_name_tool
-      -delete_rpath "/opt/homebrew/Cellar/sox/14.4.2_5/lib"
       -delete_rpath "/opt/homebrew/Cellar/libsndfile/1.2.2/lib"
       -delete_rpath "/opt/homebrew/lib"
       "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/audiopanning")

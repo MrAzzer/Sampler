@@ -1,12 +1,10 @@
 #include "audiowidget.h"
 #include "soundvisualizationwidget.h"
-#include <sox.h>
 
 AudioWidget::AudioWidget(QWidget *parent)
     : QWidget(parent), fileDialog(nullptr), isPlaying(false)
 {
     setMinimumSize(800, 400);
-    sox_init();
 
     auto *mainLayout = new QHBoxLayout(this);
 
@@ -153,7 +151,6 @@ AudioWidget::AudioWidget(QWidget *parent)
 }
 
 AudioWidget::~AudioWidget() {
-    sox_quit(); // Cleanup SoX
 }
 
 void AudioWidget::setFile(const QString &file)
@@ -226,9 +223,14 @@ void AudioWidget::openFileDialog()
         fileDialog->setMimeTypeFilters(mimeTypes);
         fileDialog->selectMimeTypeFilter(mimeTypes.constFirst());
     }
-    if (fileDialog->exec() == QDialog::Accepted)
-        fileEdit->setText(fileDialog->selectedFiles().constFirst());
+    if (fileDialog->exec() == QDialog::Accepted) {
+        QString selectedDirectory = QFileInfo(fileDialog->selectedFiles().constFirst()).absolutePath();
+
+        fileSystemModel->setRootPath(selectedDirectory);
+        fileTreeView->setRootIndex(fileSystemModel->index(selectedDirectory));
+    }
 }
+
 
 void AudioWidget::updateRoom()
 {
@@ -238,12 +240,14 @@ void AudioWidget::updateRoom()
     room->setReverbGain(float(reverbGain->value()) / 100);
 }
 
-void AudioWidget::fileSelected(const QItemSelection &selected, const QItemSelection &deselected) {
+void AudioWidget::fileSelected(const QItemSelection &selected, const QItemSelection &deselected)
+{
     (void)deselected;
     QModelIndex index = selected.indexes().first();
     selectedFile = fileSystemModel->filePath(index);
     fileEdit->setText(selectedFile);
 }
+
 
 void AudioWidget::applySpatialEffects(QByteArray &audioData, sox_rate_t /*sampleRate*/, unsigned /*channels*/) {
     float *audioBuffer = reinterpret_cast<float *>(audioData.data());
