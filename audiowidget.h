@@ -79,8 +79,8 @@ private:
     QLineEdit *saveLocationEdit;
 
     QVBoxLayout* rightPanel;
-    QString selectedFile;  // Store the selected file path
-    QString saveLocation;  // Store the location where the file will be saved
+    QString selectedFile;
+    QString saveLocation;
 };
 
 #endif // AUDIOWIDGET_H

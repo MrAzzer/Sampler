@@ -5,10 +5,7 @@ AudioWidget::AudioWidget(QWidget *parent)
     : QWidget(parent), fileDialog(nullptr), isPlaying(false)
 {
     setMinimumSize(800, 400);
-
     auto *mainLayout = new QHBoxLayout(this);
-
-    // Left Panel: File and Save Location
     auto *leftPanel = new QVBoxLayout;
 
     // File upload section
@@ -31,7 +28,7 @@ AudioWidget::AudioWidget(QWidget *parent)
 
     connect(fileTreeView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &AudioWidget::fileSelected);
 
-    // Right Panel: Knobs (Sliders)
+    // Right Panel
     auto *rightPanel = new QVBoxLayout;
 
 
@@ -40,13 +37,12 @@ AudioWidget::AudioWidget(QWidget *parent)
     centerPanel->setStyleSheet("background-color: #333;"); // Dark background for visualization
     auto *centerLayout = new QVBoxLayout(centerPanel);
 
-    // Add a label for the visualization
+    //label for the visualization
     auto *visualizationLabel = new QLabel(tr("Sound Source Visualization"));
     visualizationLabel->setAlignment(Qt::AlignCenter);
     visualizationLabel->setStyleSheet("color: white; font-size: 16px;");
     centerLayout->addWidget(visualizationLabel);
 
-    // Add the custom visualization widget
     soundVisualizationWidget = new SoundVisualizationWidget;
     centerLayout->addWidget(soundVisualizationWidget);
     mainLayout->addWidget(centerPanel);
@@ -57,35 +53,35 @@ AudioWidget::AudioWidget(QWidget *parent)
     azimuth->setRange(-180, 180);
     rightPanel->addWidget(azimuth);
 
-    rightPanel->addWidget(new QLabel(tr("Elevation (-90 - 90 degree):")));
+    rightPanel->addWidget(new QLabel(tr("Elevation:")));
     elevation = new QSlider(Qt::Horizontal);
     elevation->setRange(-90, 90);
     rightPanel->addWidget(elevation);
 
-    rightPanel->addWidget(new QLabel(tr("Distance (0 - 10 meter):")));
+    rightPanel->addWidget(new QLabel(tr("Distance:")));
     distance = new QSlider(Qt::Horizontal);
     distance->setRange(0, 1000);
     distance->setValue(100);
     rightPanel->addWidget(distance);
 
-    rightPanel->addWidget(new QLabel(tr("Occlusion (0 - 4):")));
+    rightPanel->addWidget(new QLabel(tr("Occlusion:")));
     occlusion = new QSlider(Qt::Horizontal);
     occlusion->setRange(0, 400);
     rightPanel->addWidget(occlusion);
 
-    rightPanel->addWidget(new QLabel(tr("Room dimension (0 - 100 meter):")));
+    rightPanel->addWidget(new QLabel(tr("Room dimension:")));
     roomDimension = new QSlider(Qt::Horizontal);
     roomDimension->setRange(0, 10000);
     roomDimension->setValue(1000);
     rightPanel->addWidget(roomDimension);
 
-    rightPanel->addWidget(new QLabel(tr("Reverb gain (0-5):")));
+    rightPanel->addWidget(new QLabel(tr("Reverb gain:")));
     reverbGain = new QSlider(Qt::Horizontal);
     reverbGain->setRange(0, 500);
     reverbGain->setValue(0);
     rightPanel->addWidget(reverbGain);
 
-    rightPanel->addWidget(new QLabel(tr("Reflection gain (0-5):")));
+    rightPanel->addWidget(new QLabel(tr("Reflection gain:")));
     reflectionGain = new QSlider(Qt::Horizontal);
     reflectionGain->setRange(0, 500);
     reflectionGain->setValue(0);
@@ -212,7 +208,6 @@ void AudioWidget::fileChanged(const QString &file)
         playButton->setEnabled(false);
     }
 }
-
 void AudioWidget::openFileDialog()
 {
     if (fileDialog == nullptr) {
@@ -223,14 +218,15 @@ void AudioWidget::openFileDialog()
         fileDialog->setMimeTypeFilters(mimeTypes);
         fileDialog->selectMimeTypeFilter(mimeTypes.constFirst());
     }
-    if (fileDialog->exec() == QDialog::Accepted) {
-        QString selectedDirectory = QFileInfo(fileDialog->selectedFiles().constFirst()).absolutePath();
 
+    if (fileDialog->exec() == QDialog::Accepted) {
+        QString selectedFilePath = fileDialog->selectedFiles().constFirst();
+        QString selectedDirectory = QFileInfo(selectedFilePath).absolutePath();
         fileSystemModel->setRootPath(selectedDirectory);
         fileTreeView->setRootIndex(fileSystemModel->index(selectedDirectory));
+        fileEdit->setText(selectedFilePath);
     }
 }
-
 
 void AudioWidget::updateRoom()
 {
@@ -254,7 +250,7 @@ void AudioWidget::applySpatialEffects(QByteArray &audioData, sox_rate_t /*sample
     size_t numSamples = audioData.size() / sizeof(float);
 
     const float d = distance->value();
-    float gain = 1.0f / (1.0f + d); // Simple distance attenuation
+    float gain = 1.0f / (1.0f + d);
     for (size_t i = 0; i < numSamples; ++i) {
         audioBuffer[i] *= gain;
     }
